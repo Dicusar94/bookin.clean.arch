@@ -1,0 +1,9 @@
+﻿namespace cli;
+
+public abstract class Program
+{
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("test");
+    }
+}
