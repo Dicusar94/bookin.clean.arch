@@ -1,0 +1,7 @@
+version: "3.9"
+
+services:
+  rabbitmq:
+    environment:
+      RABBITMQ_DEFAULT_USER: guest1
+      RABBITMQ_DEFAULT_PASS: guest1
