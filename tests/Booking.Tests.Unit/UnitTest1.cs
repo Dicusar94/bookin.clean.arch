@@ -1,4 +1,4 @@
-﻿namespace Booking.Tests.Uni;
+﻿namespace Booking.Tests.Unit;
 
 public class UnitTest1
 {
