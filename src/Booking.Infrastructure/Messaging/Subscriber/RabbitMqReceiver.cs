@@ -20,6 +20,22 @@ public class RabbitMqReceiver
         _channel = channel;
     }
 
+    public void RegisterListeners()
+    {
+        _listeningServices.ForEach(Listener);
+    }
+
+    public void Dispose()
+    {
+        if (_channel == null)
+        {
+            Console.WriteLine("Warning: Channel was already disposed or not initialized");
+            return;
+        }
+        
+        _channel.Dispose();
+    }
+
     private void Listener(IListener services)
     {
         _channel.ExchangeDeclare(
