@@ -1,4 +1,7 @@
+using Booking.Application;
+using Booking.Core.Messaging;
 using Booking.Web;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -15,8 +18,24 @@ var app = builder.Build();
 
     app.UseHttpsRedirection();
 
-    app.MapGet("/weatherforecast", () => new { test = "test" })
-        .WithName("GetWeatherForecast");
+    app.MapGet("/send-message/{name}", ([FromRoute] string name, IMessageProducer messageProducer) =>
+        {
+            var testEvent = new TestEvent
+            {
+                Name = name
+            };
+
+            var header = new Header(
+                sourceCode: "booking_web",
+                eventCode: testEvent.GetType().Name);
+
+            var message = new Message(header, testEvent);
+            
+            messageProducer.PublishMessage(message, testEvent.RoutingKey);
+
+            return new { Name = name };
+        })
+        .WithName("send-message");
 
     app.Run();
 }

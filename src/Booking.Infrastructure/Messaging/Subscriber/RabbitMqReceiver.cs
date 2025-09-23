@@ -66,6 +66,11 @@ public class RabbitMqReceiver
             await services.ProcessMessage(message, ea.RoutingKey);
             _channel?.BasicAck(ea.DeliveryTag, false);
         };
+
+        _channel.BasicConsume(
+            queue: queueName,
+            autoAck: false,
+            consumer: consumerAsync);
     }
     
     private static ActivityContext PropagateContextFromRabbitHeaders(IBasicProperties props)
