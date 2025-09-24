@@ -1,7 +1,9 @@
 using Booking.Application;
 using Booking.Core.Messaging;
+using Booking.Infrastructure.ExternalConfigs;
 using Booking.Web;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -36,6 +38,9 @@ var app = builder.Build();
             return new { Name = name };
         })
         .WithName("send-message");
+    
+    app.MapGet("/get-config", (IOptionsSnapshot<AppInfoOptions> options) => options.Value)
+        .WithName("get-config");
 
     app.Run();
 }

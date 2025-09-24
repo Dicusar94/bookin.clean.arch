@@ -27,6 +27,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Tests.Subcutaneous"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Tests.Unit", "tests\Booking.Tests.Unit\Booking.Tests.Unit.csproj", "{F6E8145E-9333-43DD-B55E-4E4938C0B4D9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{A78302EF-978A-4332-BA3D-F9F85AA58CD7}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Packages.props = Directory.Packages.props
+		docker-compose-dependencies.override.yaml = docker-compose-dependencies.override.yaml
+		docker-compose-dependencies.yaml = docker-compose-dependencies.yaml
+		docker-compose-external-config.override.yaml = docker-compose-external-config.override.yaml
+		docker-compose-external-config.yaml = docker-compose-external-config.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
