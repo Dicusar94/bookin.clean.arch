@@ -7,7 +7,5 @@ services:
     environment:
       SPRING_CLOUD_CONFIG_SERVER_GIT_URI: "https://github.com/Dicusar94/external-configs.git"
       SPRING_CLOUD_CONFIG_SERVER_GIT_SEARCH_PATHS: "clean-arch"
-      SPRING_CLOUD_CONFIG_SERVER_GIT_USERNAME: "Dicusar94"
-      SPRING_CLOUD_CONFIG_SERVER_GIT_PASSWORD: "Ddicusar.dv56"
     ports:
       - "8888:8888"

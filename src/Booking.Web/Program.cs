@@ -13,6 +13,8 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 {
 
+    Console.WriteLine("DOTNET_ROOT = " + Environment.GetEnvironmentVariable("DOTNET_ROOT"));
+    
     if (app.Environment.IsDevelopment())
     {
         app.MapOpenApi();
