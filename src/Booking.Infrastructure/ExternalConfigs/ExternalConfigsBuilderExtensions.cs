@@ -13,11 +13,11 @@ public static class ExternalConfigsBuilderExtensions
             .GetSection(ExternalConfigOptions.SectionName)
             .Get<ExternalConfigOptions>()!;
 
-        // if (options.Enabled)
-        // {
-        //     // note: In case running in testing mode
-        //     return builder;
-        // }
+        if (!options.Enabled)
+        {
+            // note: In case running in testing mode
+            return builder;
+        }
 
         builder.AddConfigServer();
         builder.Services.Configure<AppInfoOptions>(
