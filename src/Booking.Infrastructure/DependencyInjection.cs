@@ -2,6 +2,7 @@ using System.Runtime.Serialization;
 using Booking.Application;
 using Booking.Core.Messaging;
 using Booking.Infrastructure.ExternalConfigs;
+using Booking.Infrastructure.FeatureToggles;
 using Booking.Infrastructure.Messaging;
 using Booking.Infrastructure.Messaging.Producer;
 using Booking.Infrastructure.Messaging.Subscriber;
@@ -18,6 +19,7 @@ public static class DependencyInjection
     {
         builder.AddRabbitMq();
         builder.AddExternalConfigurations();
+        builder.AddFeatureToggles();
         
         return builder;
     }

@@ -4,6 +4,7 @@ using Booking.Infrastructure.ExternalConfigs;
 using Booking.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Microsoft.FeatureManagement;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -43,6 +44,18 @@ var app = builder.Build();
     
     app.MapGet("/get-config", (IOptionsSnapshot<AppInfoOptions> options) => options.Value)
         .WithName("get-config");
+
+    app.MapGet("/features", async ([FromServices] IVariantFeatureManager featureManager) =>
+        {
+            var features = featureManager.GetFeatureNamesAsync();
+
+            await foreach (var feature in features)
+            {
+                var isEnabled = await featureManager.IsEnabledAsync(feature);
+                Console.WriteLine($"{feature} : {isEnabled}");
+            }
+        })
+        .WithName("Features");
 
     app.Run();
 }
