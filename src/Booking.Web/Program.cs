@@ -1,6 +1,7 @@
 using Booking.Application;
 using Booking.Core.Messaging;
 using Booking.Infrastructure.ExternalConfigs;
+using Booking.Infrastructure.FeatureToggles.Services;
 using Booking.Web;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -33,13 +34,13 @@ var app = builder.Build();
                 eventCode: testEvent.GetType().Name);
 
             var message = new Message(header, testEvent);
-            
+
             messageProducer.PublishMessage(message, testEvent.RoutingKey);
 
             return new { Name = name };
         })
         .WithName("send-message");
-    
+
     app.MapGet("/get-config", (IOptionsSnapshot<AppInfoOptions> options) => options.Value)
         .WithName("get-config");
 
@@ -54,6 +55,13 @@ var app = builder.Build();
             }
         })
         .WithName("feature-overrides");
+
+    app.MapGet("/features/test",
+        async ([FromServices] IVariantServiceProvider<ITestService> sp, CancellationToken ct) =>
+        {
+            var service = await sp.GetServiceAsync(ct);
+            service.Print();
+        });
     
     app.Run();
 }

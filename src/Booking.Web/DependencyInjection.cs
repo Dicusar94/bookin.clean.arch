@@ -1,4 +1,5 @@
 using Booking.Infrastructure;
+using Booking.Infrastructure.FeatureToggles.Services;
 using Booking.Web.Infrastructure.Middlewares;
 using Microsoft.FeatureManagement;
 
@@ -9,6 +10,10 @@ public static class DependencyInjection
     public static IHostApplicationBuilder AddWeb(this IHostApplicationBuilder builder)
     {
         builder.Services.AddOpenApi();
+        builder.Services.AddHttpContextAccessor();
+
+        builder.Services.AddSingleton<ITestService, TestServiceOne>();
+        builder.Services.AddSingleton<ITestService, TestServiceTwo>();
         
         return builder.AddInfrastructure();
     }
