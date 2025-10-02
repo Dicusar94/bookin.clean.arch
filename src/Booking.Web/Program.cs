@@ -1,11 +1,4 @@
-using Booking.Application;
-using Booking.Core.Messaging;
-using Booking.Infrastructure.ExternalConfigs;
-using Booking.Infrastructure.FeatureToggles.Services;
 using Booking.Web;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Microsoft.FeatureManagement;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -21,47 +14,6 @@ var app = builder.Build();
 
     app.UseHttpsRedirection();
     app.UseMiddlewares();
-
-    app.MapGet("/send-message/{name}", ([FromRoute] string name, IMessageProducer messageProducer) =>
-        {
-            var testEvent = new TestEvent
-            {
-                Name = name
-            };
-
-            var header = new Header(
-                sourceCode: "booking_web",
-                eventCode: testEvent.GetType().Name);
-
-            var message = new Message(header, testEvent);
-
-            messageProducer.PublishMessage(message, testEvent.RoutingKey);
-
-            return new { Name = name };
-        })
-        .WithName("send-message");
-
-    app.MapGet("/get-config", (IOptionsSnapshot<AppInfoOptions> options) => options.Value)
-        .WithName("get-config");
-
-    app.MapGet("/features", async ([FromServices] IVariantFeatureManager featureManager) =>
-        {
-            var features = featureManager.GetFeatureNamesAsync();
-
-            await foreach (var feature in features)
-            {
-                var isEnabled = await featureManager.IsEnabledAsync(feature);
-                Console.WriteLine($"{feature} : {isEnabled}");
-            }
-        })
-        .WithName("feature-overrides");
-
-    app.MapGet("/features/test",
-        async ([FromServices] IVariantServiceProvider<ITestService> sp, CancellationToken ct) =>
-        {
-            var service = await sp.GetServiceAsync(ct);
-            service.Print();
-        });
     
     app.Run();
 }
