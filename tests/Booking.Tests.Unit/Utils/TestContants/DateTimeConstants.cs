@@ -2,6 +2,8 @@ namespace Booking.Tests.Unit.Utils.TestContants;
 
 public class DateTimeConstants
 {
+    public const DayOfWeek DayOfWeek = System.DayOfWeek.Sunday;
+    
     public static readonly DateOnly DateNow = new(2025, 10, 12);
     
     public static readonly DateTime DateTimeNow = new(
