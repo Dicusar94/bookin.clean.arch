@@ -1,0 +1,10 @@
+namespace Booking.Tests.Unit.Utils.TestContants;
+
+public class DateTimeConstants
+{
+    public static readonly DateOnly DateNow = new(2025, 10, 12);
+    
+    public static readonly DateTime DateTimeNow = new(
+        date: DateNow,
+        time: new TimeOnly(0, 0));
+}

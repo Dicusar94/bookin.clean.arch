@@ -11,7 +11,7 @@ public class CreateRoomShould
     public void Create_room()
     {
         // Arrange & Act
-        var room = RoomFactory.CreateRoom(
+        var room = TestRoomFactory.CreateRoom(
             name: RoomConstants.Name,
             capacity: RoomConstants.Capacity,
             id: RoomConstants.Id);
@@ -30,7 +30,7 @@ public class CreateRoomShould
     public void Create_fail(string name, int capacity)
     {
         // Arrange & Act
-        var action = () => RoomFactory.CreateRoom(
+        var action = () => TestRoomFactory.CreateRoom(
             name: name,
             capacity: capacity,
             id: RoomConstants.Id);

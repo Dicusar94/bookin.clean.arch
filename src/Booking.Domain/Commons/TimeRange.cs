@@ -1,4 +1,3 @@
-using Ardalis.GuardClauses;
 using Booking.Core.Entities;
 
 namespace Booking.Domain.Commons;
@@ -20,6 +19,11 @@ public class TimeRange : ValueObject
             Start = start,
             End = end 
         };
+    }
+
+    public bool OverlapsWith(TimeRange other)
+    {
+        return Start < other.End && other.Start < End;
     }
     
     public override IEnumerable<object?> GetEqualityComponents()
