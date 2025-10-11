@@ -10,13 +10,13 @@ public class CreateRoomShould
     [Fact]
     public void Create_room()
     {
-        // Arrange & Act
+        // arrange & act
         var room = TestRoomFactory.CreateRoom(
             name: RoomConstants.Name,
             capacity: RoomConstants.Capacity,
             id: RoomConstants.Id);
         
-        // Assert
+        // assert
         room.Id.ShouldBe(RoomConstants.Id);
         room.Name.ShouldBe(RoomConstants.Name);
         room.Capacity.ShouldBe(RoomConstants.Capacity);
@@ -29,13 +29,13 @@ public class CreateRoomShould
     [InlineData("room 1", -1)]
     public void Create_fail(string name, int capacity)
     {
-        // Arrange & Act
+        // arrange & act
         var action = () => TestRoomFactory.CreateRoom(
             name: name,
             capacity: capacity,
             id: RoomConstants.Id);
         
-        // Assert
+        // assert
         action.ShouldThrow<Exception>();
     }
 }

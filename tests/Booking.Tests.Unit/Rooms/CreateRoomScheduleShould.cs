@@ -7,7 +7,7 @@ namespace Booking.Tests.Unit.Rooms;
 public class CreateRoomScheduleShould
 {
     [Fact]
-    public void Recurring_create()
+    public void Recurring_should_create_a_recurring_room_schedule()
     {
         // arrange && act
         var schedule = RoomScheduleFactory.Recurring(
@@ -25,7 +25,7 @@ public class CreateRoomScheduleShould
     }
     
     [Fact]
-    public void Concrete_create()
+    public void Concrete_should_create_a_concrete_room_schedule()
     {
         // arrange && act
         var schedule = RoomScheduleFactory.Concrete(

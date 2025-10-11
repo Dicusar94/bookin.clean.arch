@@ -11,6 +11,10 @@ public class RoomSchedule : Entity
     public TimeRange TimeRange { get; set; } = null!;
     public DateOnly? Date { get; set; }
     
+    public override string ToString() => IsRecurring
+        ? $"{DayOfWeek} ({TimeRange})"
+        : $"{Date:yyyy-MM-dd} ({TimeRange})";
+    
     internal RoomSchedule(
         Guid roomId,
         DayOfWeek dayOfWeek,
@@ -34,6 +38,25 @@ public class RoomSchedule : Entity
         TimeRange = timeRange;
         DayOfWeek = dayOfWeek;
         Date = date;
+    }
+
+    public bool OverlapsWith(RoomSchedule other)
+    {
+        if (RoomId != other.RoomId) return false;
+
+        if (IsRecurring && other.IsRecurring)
+        {
+            return DayOfWeek == other.DayOfWeek && 
+                   TimeRange.OverlapsWith(other.TimeRange);
+        }
+
+        if (!IsRecurring && !other.IsRecurring)
+        {
+            return Date == other.Date && 
+                   TimeRange.OverlapsWith(other.TimeRange);
+        }
+
+        return false;
     }
     
     private RoomSchedule(){}

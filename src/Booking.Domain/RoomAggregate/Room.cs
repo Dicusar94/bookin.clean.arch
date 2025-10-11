@@ -1,3 +1,4 @@
+using System.Xml.Schema;
 using Ardalis.GuardClauses;
 using Booking.Core.Entities;
 
@@ -22,6 +23,19 @@ public class Room : AggregateRoot
         Capacity = capacity;
         Status = RoomStatus.Inactive;
     }
+
+    public void AddSchedule(RoomSchedule schedule)
+    {
+        if (HasOverlapWithExisting(schedule))
+        {
+            throw new Exception($"Cannot add schedule on {schedule} — it overlaps with an existing one.");
+        }
+        
+        _schedules.Add(schedule);
+    }
+    
+    private bool HasOverlapWithExisting(RoomSchedule newSchedule)
+        => _schedules.Any(existing => existing.OverlapsWith(newSchedule)); 
     
     private Room(){}
 }
