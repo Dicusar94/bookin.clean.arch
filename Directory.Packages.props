@@ -14,6 +14,7 @@
     <PackageVersion Include="Microsoft.FeatureManagement.AspNetCore" Version="4.3.0" />
     <!--RabbitMq-->
     <PackageVersion Include="RabbitMQ.Client" Version="6.5.0" />
+    <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="Steeltoe.Configuration.ConfigServer" Version="4.0.0" />
   </ItemGroup>
   <ItemGroup>
