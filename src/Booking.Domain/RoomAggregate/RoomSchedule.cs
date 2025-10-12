@@ -1,5 +1,5 @@
 using Booking.Core.Entities;
-using Booking.Domain.Commons;
+using Booking.Domain.Shared;
 
 namespace Booking.Domain.RoomAggregate;
 
@@ -55,6 +55,21 @@ public class RoomSchedule : Entity
         }
 
         return false;
+    }
+
+    public RoomSchedule WithTimeRange(TimeRange newTimeRange)
+    {
+        return new RoomSchedule(
+            roomId: RoomId,
+            dayOfWeek: DayOfWeek,
+            isRecurring: IsRecurring,
+            timeRange: newTimeRange,
+            date: Date);
+    }
+
+    public void RescheduleTimeRange(TimeRange newTimeRange)
+    {
+        TimeRange = newTimeRange;
     }
     
     private RoomSchedule(){}

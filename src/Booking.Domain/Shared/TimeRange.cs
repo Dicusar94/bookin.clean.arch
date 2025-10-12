@@ -1,6 +1,6 @@
 using Booking.Core.Entities;
 
-namespace Booking.Domain.Commons;
+namespace Booking.Domain.Shared;
 
 public class TimeRange : ValueObject
 {

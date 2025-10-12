@@ -1,6 +1,7 @@
 using Ardalis.GuardClauses;
 using Booking.Core.Entities;
 using Booking.Domain.RoomAggregate.Events;
+using Booking.Domain.Shared;
 
 namespace Booking.Domain.RoomAggregate;
 
@@ -37,6 +38,31 @@ public class Room : AggregateRoot
         }
         
         _schedules.Add(schedule);
+        
+        AddDomainEvent(new RoomScheduleChangedEvent(
+            Id: Id,
+            RoomScheduleId: schedule.Id));
+    }
+
+    public void Reschedule(Guid roomScheduleId, TimeRange newTimeRange)
+    {
+        var schedule = Schedules.FirstOrDefault(x => x.Id == roomScheduleId);
+
+        if (schedule is null)
+        {
+            throw new Exception("Schedule not found.");
+        }
+
+        if (HasOverlapWithExisting(roomScheduleId, schedule.WithTimeRange(newTimeRange)))
+        {
+            throw new Exception($"Cannot reschedule on {schedule} — it overlaps with an existing one.");
+        }
+        
+        schedule.RescheduleTimeRange(newTimeRange);
+        
+        AddDomainEvent(new RoomScheduleChangedEvent(
+            Id: Id,
+            RoomScheduleId: roomScheduleId));
     }
 
     public void Activate()
@@ -55,6 +81,11 @@ public class Room : AggregateRoot
     
     private bool HasOverlapWithExisting(RoomSchedule newSchedule)
         => _schedules.Any(existing => existing.OverlapsWith(newSchedule)); 
+    
+    private bool HasOverlapWithExisting(Guid roomScheduleId, RoomSchedule newSchedule)
+        => _schedules.Any(existing => 
+            existing.Id != roomScheduleId && 
+            existing.OverlapsWith(newSchedule)); 
     
     private Room(){}
 }

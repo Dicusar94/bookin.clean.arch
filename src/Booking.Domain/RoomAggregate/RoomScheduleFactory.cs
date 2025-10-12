@@ -1,4 +1,4 @@
-using Booking.Domain.Commons;
+using Booking.Domain.Shared;
 
 namespace Booking.Domain.RoomAggregate;
 

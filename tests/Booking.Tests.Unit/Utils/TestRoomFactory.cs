@@ -1,5 +1,5 @@
-using Booking.Domain.Commons;
 using Booking.Domain.RoomAggregate;
+using Booking.Domain.Shared;
 using Booking.Tests.Unit.Utils.TestContants;
 
 namespace Booking.Tests.Unit.Utils;
