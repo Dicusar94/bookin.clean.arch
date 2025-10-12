@@ -14,10 +14,10 @@ public class CreateRoomScheduleShould
             roomId: RoomConstants.Id,
             dayOfWeek: DateTimeConstants.DayOfWeek,
             timeRange: TimeRangeConstants.NineToEleven,
-            id: RoomScheduleConstants.Id1);
+            id: RoomScheduleConstants.Id);
         
         // assert
-        schedule.Id.ShouldBe(RoomScheduleConstants.Id1);
+        schedule.Id.ShouldBe(RoomScheduleConstants.Id);
         schedule.IsRecurring.ShouldBeTrue();
         schedule.DayOfWeek.ShouldBe(DateTimeConstants.DayOfWeek);
         schedule.TimeRange.ShouldBe(TimeRangeConstants.NineToEleven);
@@ -33,13 +33,28 @@ public class CreateRoomScheduleShould
             timeRange: TimeRangeConstants.NineToEleven,
             date: DateTimeConstants.DateNow,
             today: DateTimeConstants.DateTimeNow,
-            id: RoomScheduleConstants.Id1);
+            id: RoomScheduleConstants.Id);
         
         // assert
-        schedule.Id.ShouldBe(RoomScheduleConstants.Id1);
+        schedule.Id.ShouldBe(RoomScheduleConstants.Id);
         schedule.IsRecurring.ShouldBeFalse();
         schedule.DayOfWeek.ShouldBe(DateTimeConstants.DateNow.DayOfWeek);
         schedule.TimeRange.ShouldBe(TimeRangeConstants.NineToEleven);
         schedule.Date.ShouldBe(DateTimeConstants.DateNow);
+    }
+    
+    [Fact]
+    public void Concrete_with_date_in_the_past_should_fail()
+    {
+        // arrange && act
+        var action = () => RoomScheduleFactory.Concrete(
+            roomId: RoomConstants.Id,
+            timeRange: TimeRangeConstants.NineToEleven,
+            date: DateTimeConstants.DateNow.AddDays(-1),
+            today: DateTimeConstants.DateTimeNow,
+            id: RoomScheduleConstants.Id);
+        
+        // assert
+        action.ShouldThrow<Exception>();
     }
 }

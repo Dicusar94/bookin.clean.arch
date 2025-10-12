@@ -26,6 +26,11 @@ public class Room : AggregateRoot
 
     public void AddSchedule(RoomSchedule schedule)
     {
+        if (Id != schedule.RoomId)
+        {
+            throw new Exception("Cannot add schedule from other room");
+        }
+        
         if (HasOverlapWithExisting(schedule))
         {
             throw new Exception($"Cannot add schedule on {schedule} — it overlaps with an existing one.");

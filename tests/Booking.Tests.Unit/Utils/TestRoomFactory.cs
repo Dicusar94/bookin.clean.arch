@@ -6,7 +6,10 @@ namespace Booking.Tests.Unit.Utils;
 
 public static class TestRoomFactory
 {
-    public static Room CreateRoom(string? name, int? capacity, Guid? id)
+    public static Room CreateRoom(
+        string? name = null, 
+        int? capacity = null, 
+        Guid? id = null)
     {
         return new Room(
             name: name ?? RoomConstants.Name,
@@ -15,9 +18,9 @@ public static class TestRoomFactory
     }
 
     public static RoomSchedule CreateRecurringSchedule(
-        Guid? roomId, 
-        DayOfWeek? dayOfWeek,
-        TimeRange? timeRange)
+        Guid? roomId = null, 
+        DayOfWeek? dayOfWeek = null,
+        TimeRange? timeRange = null)
     {
         return RoomScheduleFactory.Recurring(
             roomId: roomId ?? RoomConstants.Id,
@@ -26,10 +29,10 @@ public static class TestRoomFactory
     }
 
     public static RoomSchedule CreateConcreteSchedule(
-        Guid? roomId,
-        TimeRange? timeRange,
-        DateOnly? date,
-        DateTime? today)
+        Guid? roomId = null,
+        TimeRange? timeRange = null,
+        DateOnly? date = null,
+        DateTime? today = null)
     {
         return RoomScheduleFactory.Concrete(
             roomId: roomId ?? RoomConstants.Id,

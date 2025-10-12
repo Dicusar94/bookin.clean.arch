@@ -42,8 +42,6 @@ public class RoomSchedule : Entity
 
     public bool OverlapsWith(RoomSchedule other)
     {
-        if (RoomId != other.RoomId) return false;
-
         if (IsRecurring && other.IsRecurring)
         {
             return DayOfWeek == other.DayOfWeek && 
