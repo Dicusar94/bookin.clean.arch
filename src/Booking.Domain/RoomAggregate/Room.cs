@@ -1,6 +1,6 @@
-using System.Xml.Schema;
 using Ardalis.GuardClauses;
 using Booking.Core.Entities;
+using Booking.Domain.RoomAggregate.Events;
 
 namespace Booking.Domain.RoomAggregate;
 
@@ -8,9 +8,9 @@ public class Room : AggregateRoot
 {
     private readonly List<RoomSchedule> _schedules = [];
     
-    public string Name { get; set; } = null!;
-    public int Capacity { get; set; }
-    public RoomStatus Status { get; set; }
+    public string Name { get; private set; } = null!;
+    public int Capacity { get; private set; }
+    public RoomStatus Status { get; private set; }
     public IReadOnlyList<RoomSchedule> Schedules => _schedules.AsReadOnly();
 
     public Room(string name, int capacity, Guid? id = null) 
@@ -37,6 +37,20 @@ public class Room : AggregateRoot
         }
         
         _schedules.Add(schedule);
+    }
+
+    public void Activate()
+    {
+        Status = RoomStatus.Active;
+    }
+
+    public void Deactivate(TimeProvider timeProvider)
+    {
+        Status = RoomStatus.Inactive;
+        
+        AddDomainEvent(new RoomDeactivatedEvent(
+            Id: Id,
+            OnDateTime: timeProvider.GetUtcNow().DateTime));
     }
     
     private bool HasOverlapWithExisting(RoomSchedule newSchedule)

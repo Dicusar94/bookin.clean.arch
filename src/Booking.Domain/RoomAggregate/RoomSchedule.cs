@@ -5,11 +5,11 @@ namespace Booking.Domain.RoomAggregate;
 
 public class RoomSchedule : Entity
 {
-    public Guid RoomId { get; set; }
-    public DayOfWeek DayOfWeek { get; set; }
-    public bool IsRecurring { get; set; }
-    public TimeRange TimeRange { get; set; } = null!;
-    public DateOnly? Date { get; set; }
+    public Guid RoomId { get; private set; }
+    public DayOfWeek DayOfWeek { get; private set; }
+    public bool IsRecurring { get; private set; }
+    public TimeRange TimeRange { get; private set; } = null!;
+    public DateOnly? Date { get; private set; }
     
     public override string ToString() => IsRecurring
         ? $"{DayOfWeek} ({TimeRange})"

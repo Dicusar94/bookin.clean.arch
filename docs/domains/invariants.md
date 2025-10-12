@@ -17,10 +17,18 @@ This document summarizes all **business rules and invariants** for each aggregat
 - Room can only be booked **within its defined schedule**.
 - Deactivating a room cancels **future bookings**.
 - Activating a room restores its ability to be booked.
+- **When a room schedule changes**, all existing bookings must be revalidated:
+  - Bookings outside the new schedule are **automatically canceled**.
+  - Users affected must be **notified**.
+  - The **waitlist** is re-evaluated for new available slots.
 
 **Domain Events:**
 - `RoomDeactivatedEvent`  
-- `RoomScheduleChangedEvent`
+- `RoomScheduleChangedEvent`  
+
+**Domain Services Involved:**
+- `BookingRevalidationService` – validates and cancels/reschedules affected bookings.  
+- `WaitlistReevaluationService` – checks if new slots allow promotions.
 
 ---
 
