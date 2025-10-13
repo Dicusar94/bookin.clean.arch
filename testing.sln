@@ -37,6 +37,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "utils", "utils", "{A78302EF
 		docker-compose-external-config.yaml = docker-compose-external-config.yaml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "coverage", "coverage", "{606E253A-8BCD-42BF-AD0B-24D05E4B0EEC}"
+	ProjectSection(SolutionItems) = preProject
+		test.unit.coverage.sh = test.unit.coverage.sh
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -98,5 +103,6 @@ Global
 		{F4611813-C9E5-4B19-9BD1-8F4D099CD430} = {AE0D0919-A0A8-49CB-B9C8-606FD7D98001}
 		{34F130F9-B9B9-41E0-9E26-BFED6B641BD1} = {AE0D0919-A0A8-49CB-B9C8-606FD7D98001}
 		{F6E8145E-9333-43DD-B55E-4E4938C0B4D9} = {AE0D0919-A0A8-49CB-B9C8-606FD7D98001}
+		{606E253A-8BCD-42BF-AD0B-24D05E4B0EEC} = {A78302EF-978A-4332-BA3D-F9F85AA58CD7}
 	EndGlobalSection
 EndGlobal
