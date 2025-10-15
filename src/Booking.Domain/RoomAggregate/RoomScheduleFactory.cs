@@ -1,6 +1,6 @@
-using Booking.Domain.Shared;
+using BookingApp.Shared;
 
-namespace Booking.Domain.RoomAggregate;
+namespace BookingApp.RoomAggregate;
 
 public static class RoomScheduleFactory
 {

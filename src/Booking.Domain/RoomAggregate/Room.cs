@@ -1,9 +1,9 @@
 using Ardalis.GuardClauses;
-using Booking.Core.Entities;
-using Booking.Domain.RoomAggregate.Events;
-using Booking.Domain.Shared;
+using BookingApp.Entities;
+using BookingApp.RoomAggregate.Events;
+using BookingApp.Shared;
 
-namespace Booking.Domain.RoomAggregate;
+namespace BookingApp.RoomAggregate;
 
 public class Room : AggregateRoot
 {

@@ -1,10 +1,10 @@
-using Booking.Domain.Shared;
+using BookingApp.Shared;
 
 namespace Booking.Tests.Unit.Utils.TestContants;
 
 public static class TestBookingFactory
 {
-    public static Domain.BookingAggregate.Booking Create(
+    public static BookingApp.BookingAggregate.Booking Create(
         Guid? roomId,
         Guid? userId,
         DateOnly? date,
@@ -13,9 +13,6 @@ public static class TestBookingFactory
         Guid? id = null
     )
     {
-        return new Domain.BookingAggregate.Booking(
-            roomId: roomId ?? RoomConstants.Id,
-            userId: userId ?? UserConstants.Id,
-        );
+        return default;
     }
 }

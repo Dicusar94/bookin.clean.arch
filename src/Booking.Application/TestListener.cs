@@ -1,8 +1,8 @@
 using System.Text.Json;
-using Booking.Core.Messaging;
+using BookingApp.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Booking.Application;
+namespace BookingApp;
 
 public class TestListener(IServiceScopeFactory serviceScopeFactory) : IListener
 {

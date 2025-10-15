@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Booking.Core.Messaging;
+namespace BookingApp.Messaging;
 
 public record Header
 {

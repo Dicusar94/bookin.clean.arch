@@ -1,6 +1,6 @@
-using Booking.Core.Entities;
+using BookingApp.Entities;
 
-namespace Booking.Domain.RoomAggregate.Events;
+namespace BookingApp.RoomAggregate.Events;
 
 public record RoomScheduleChangedEvent(Guid Id, Guid RoomScheduleId) : IDomainEvent
 {

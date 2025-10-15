@@ -1,4 +1,4 @@
-namespace Booking.Domain.BookingAggregate;
+namespace BookingApp.BookingAggregate;
 
 public enum BookingStatus
 {

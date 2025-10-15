@@ -1,13 +1,11 @@
-using Booking.Application;
-using Booking.Core.Messaging;
-using Booking.Infrastructure.Messaging.Producer;
-using Booking.Infrastructure.Messaging.Subscriber;
+using BookingApp.Messaging.Producer;
+using BookingApp.Messaging.Subscriber;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RabbitMQ.Client;
 
-namespace Booking.Infrastructure.Messaging;
+namespace BookingApp.Messaging;
 
 public static class RabbitMqBuilderExtensions
 {

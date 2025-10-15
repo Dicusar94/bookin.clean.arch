@@ -16,6 +16,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Web", "src\Booking.Web\Booking.Web.csproj", "{E274E237-4E28-49C1-A2EC-4541046CFD42}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AE0D0919-A0A8-49CB-B9C8-606FD7D98001}"
+	ProjectSection(SolutionItems) = preProject
+		tests\Directory.Build.props = tests\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Tests.Contract", "tests\Booking.Tests.Contract\Booking.Tests.Contract.csproj", "{56960078-A895-47FF-9450-70EA7FF97EC6}"
 EndProject

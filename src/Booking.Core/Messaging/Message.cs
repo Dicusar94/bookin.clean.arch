@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace Booking.Core.Messaging;
+namespace BookingApp.Messaging;
 
 public record Message
 {

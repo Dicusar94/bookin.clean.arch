@@ -1,4 +1,4 @@
-namespace Booking.Web.Infrastructure.Middlewares;
+namespace BookingApp.Infrastructure.Middlewares;
 
 public class LoggingMiddleware(RequestDelegate next, ILogger<LoggingMiddleware> logger)
 {

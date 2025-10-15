@@ -1,4 +1,4 @@
-using Booking.Web;
+using BookingApp;
 
 var builder = WebApplication.CreateBuilder(args);
 {

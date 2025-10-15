@@ -1,4 +1,4 @@
-namespace Booking.Core.Messaging;
+namespace BookingApp.Messaging;
 
 public interface IMessageProducer
 {

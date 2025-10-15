@@ -1,4 +1,4 @@
-namespace Booking.Core.Entities;
+namespace BookingApp.Entities;
 
 public interface IDomainEvent
 {

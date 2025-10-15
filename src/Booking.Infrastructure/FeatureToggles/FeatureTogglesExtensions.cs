@@ -1,9 +1,9 @@
-using Booking.Infrastructure.FeatureToggles.Services;
+using BookingApp.FeatureToggles.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.FeatureManagement;
 
-namespace Booking.Infrastructure.FeatureToggles;
+namespace BookingApp.FeatureToggles;
 
 public static class FeatureTogglesExtensions
 {

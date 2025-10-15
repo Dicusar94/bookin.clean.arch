@@ -1,4 +1,4 @@
-using Booking.Domain.Shared;
+using BookingApp.Shared;
 
 namespace Booking.Tests.Unit.Utils.TestContants;
 

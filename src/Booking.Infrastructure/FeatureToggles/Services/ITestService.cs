@@ -1,4 +1,4 @@
-namespace Booking.Infrastructure.FeatureToggles.Services;
+namespace BookingApp.FeatureToggles.Services;
 
 public interface ITestService
 {

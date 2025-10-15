@@ -1,4 +1,4 @@
-namespace Booking.Infrastructure.ExternalConfigs;
+namespace BookingApp.ExternalConfigs;
 
 public class AppInfoOptions
 {

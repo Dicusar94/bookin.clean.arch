@@ -1,17 +1,9 @@
-using System.Runtime.Serialization;
-using Booking.Application;
-using Booking.Core.Messaging;
-using Booking.Infrastructure.ExternalConfigs;
-using Booking.Infrastructure.FeatureToggles;
-using Booking.Infrastructure.Messaging;
-using Booking.Infrastructure.Messaging.Producer;
-using Booking.Infrastructure.Messaging.Subscriber;
+using BookingApp.ExternalConfigs;
+using BookingApp.FeatureToggles;
+using BookingApp.Messaging;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using RabbitMQ.Client;
 
-namespace Booking.Infrastructure;
+namespace BookingApp;
 
 public static class DependencyInjection
 {

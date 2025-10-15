@@ -1,9 +1,8 @@
-using Booking.Infrastructure;
-using Booking.Infrastructure.FeatureToggles.Services;
-using Booking.Web.Infrastructure.Middlewares;
+using BookingApp.FeatureToggles.Services;
+using BookingApp.Infrastructure.Middlewares;
 using Microsoft.FeatureManagement;
 
-namespace Booking.Web;
+namespace BookingApp;
 
 public static class DependencyInjection
 {

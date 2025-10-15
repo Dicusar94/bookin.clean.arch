@@ -1,6 +1,6 @@
 using Microsoft.FeatureManagement;
 
-namespace Booking.Infrastructure.FeatureToggles.Services;
+namespace BookingApp.FeatureToggles.Services;
 
 [VariantServiceAlias("TestTwo")]
 public class TestServiceTwo : ITestService

@@ -1,4 +1,4 @@
-namespace Booking.Domain.RoomAggregate;
+namespace BookingApp.RoomAggregate;
 
 public enum RoomStatus
 {

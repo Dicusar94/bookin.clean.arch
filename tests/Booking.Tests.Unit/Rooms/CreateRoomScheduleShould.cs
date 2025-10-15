@@ -1,5 +1,5 @@
-using Booking.Domain.RoomAggregate;
 using Booking.Tests.Unit.Utils.TestContants;
+using BookingApp.RoomAggregate;
 using Shouldly;
 
 namespace Booking.Tests.Unit.Rooms;

@@ -1,11 +1,10 @@
 using System.Diagnostics;
 using System.Text;
-using Booking.Core.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
-namespace Booking.Infrastructure.Messaging.Subscriber;
+namespace BookingApp.Messaging.Subscriber;
 
 public class RabbitMqReceiver
 {

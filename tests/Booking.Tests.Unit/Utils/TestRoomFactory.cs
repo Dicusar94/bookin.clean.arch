@@ -1,6 +1,6 @@
-using Booking.Domain.RoomAggregate;
-using Booking.Domain.Shared;
 using Booking.Tests.Unit.Utils.TestContants;
+using BookingApp.RoomAggregate;
+using BookingApp.Shared;
 
 namespace Booking.Tests.Unit.Utils;
 

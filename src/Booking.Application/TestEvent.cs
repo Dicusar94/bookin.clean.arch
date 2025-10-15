@@ -1,7 +1,7 @@
-using Booking.Core.Entities;
-using Booking.Core.Messaging;
+using BookingApp.Entities;
+using BookingApp.Messaging;
 
-namespace Booking.Application;
+namespace BookingApp;
 
 public class TestEvent : IDomainEvent
 {

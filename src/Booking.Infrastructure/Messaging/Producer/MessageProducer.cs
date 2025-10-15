@@ -1,9 +1,8 @@
 using System.Text;
-using Booking.Core.Messaging;
 using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
 
-namespace Booking.Infrastructure.Messaging.Producer;
+namespace BookingApp.Messaging.Producer;
 
 public class MessageProducer : IMessageProducer
 {

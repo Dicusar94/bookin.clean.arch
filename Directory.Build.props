@@ -1,5 +1,6 @@
 <Project>
     <PropertyGroup>
+        <RootNamespace>BookingApp</RootNamespace>
         <LangVersion>12.0</LangVersion>
         <AnalysisLevel>latest</AnalysisLevel>
         <Nullable>enable</Nullable>

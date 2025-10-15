@@ -1,4 +1,4 @@
-﻿namespace Booking.Tests.Contract;
+﻿namespace BookingApp;
 
 public class UnitTest1
 {

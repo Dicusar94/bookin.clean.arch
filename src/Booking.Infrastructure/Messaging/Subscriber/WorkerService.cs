@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Booking.Infrastructure.Messaging.Subscriber;
+namespace BookingApp.Messaging.Subscriber;
 
 public class WorkerService(ILogger<WorkerService> logger, RabbitMqReceiver rabbitMqReceiver) : BackgroundService
 {

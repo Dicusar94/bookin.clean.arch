@@ -1,4 +1,4 @@
-namespace Booking.Infrastructure.Messaging;
+namespace BookingApp.Messaging;
 
 public class RabbitMQSettings
 {

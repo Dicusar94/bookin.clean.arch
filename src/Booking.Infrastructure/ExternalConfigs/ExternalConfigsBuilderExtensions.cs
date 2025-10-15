@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Steeltoe.Configuration.ConfigServer;
 
-namespace Booking.Infrastructure.ExternalConfigs;
+namespace BookingApp.ExternalConfigs;
 
 public static class ExternalConfigsBuilderExtensions
 {

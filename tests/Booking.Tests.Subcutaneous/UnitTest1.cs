@@ -1,4 +1,4 @@
-﻿namespace Booking.Tests.Subcutaneous;
+﻿namespace BookingApp;
 
 public class UnitTest1
 {

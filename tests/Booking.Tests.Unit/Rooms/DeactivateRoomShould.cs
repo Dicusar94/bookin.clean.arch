@@ -1,6 +1,6 @@
-using Booking.Domain.RoomAggregate;
-using Booking.Domain.RoomAggregate.Events;
 using Booking.Tests.Unit.Utils;
+using BookingApp.RoomAggregate;
+using BookingApp.RoomAggregate.Events;
 using Microsoft.Extensions.Time.Testing;
 using Shouldly;
 

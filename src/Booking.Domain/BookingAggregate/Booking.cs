@@ -1,7 +1,7 @@
-using Booking.Core.Entities;
-using Booking.Domain.Shared;
+using BookingApp.Entities;
+using BookingApp.Shared;
 
-namespace Booking.Domain.BookingAggregate;
+namespace BookingApp.BookingAggregate;
 
 public class Booking : AggregateRoot
 {

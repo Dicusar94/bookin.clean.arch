@@ -1,4 +1,4 @@
-﻿namespace Booking.Tests.EndToEnd;
+﻿namespace BookingApp;
 
 public class UnitTest1
 {

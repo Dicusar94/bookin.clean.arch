@@ -1,6 +1,6 @@
 using RabbitMQ.Client;
 
-namespace Booking.Infrastructure.Messaging;
+namespace BookingApp.Messaging;
 
 public class ModelFactory(IConnectionFactory connectionFactory, RabbitMQSettings rabbitMqSettings) : IDisposable
 {
