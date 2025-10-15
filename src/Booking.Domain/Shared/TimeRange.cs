@@ -6,6 +6,7 @@ public class TimeRange : ValueObject
 {
     public TimeOnly Start { get; private init; }
     public TimeOnly End { get; private init; }
+    public TimeSpan Duration => End - Start;
 
     public static TimeRange Create(TimeOnly start, TimeOnly end)
     {
@@ -24,6 +25,11 @@ public class TimeRange : ValueObject
     public bool OverlapsWith(TimeRange other)
     {
         return Start < other.End && other.Start < End;
+    }
+
+    public bool HasValidDuration(TimeSpan min, TimeSpan max)
+    {
+        return Duration >= min && Duration <= max;
     }
     
     public override IEnumerable<object?> GetEqualityComponents()
