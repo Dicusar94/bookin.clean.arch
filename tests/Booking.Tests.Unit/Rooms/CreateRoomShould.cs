@@ -1,9 +1,9 @@
-using Booking.Tests.Unit.Utils;
-using Booking.Tests.Unit.Utils.TestContants;
 using BookingApp.RoomAggregate;
+using BookingApp.Tests.Unit.Utils;
+using BookingApp.Tests.Unit.Utils.TestContants.Rooms;
 using Shouldly;
 
-namespace Booking.Tests.Unit.Rooms;
+namespace BookingApp.Tests.Unit.Rooms;
 
 public class CreateRoomShould
 {

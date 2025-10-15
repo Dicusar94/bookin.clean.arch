@@ -1,8 +1,9 @@
-using Booking.Tests.Unit.Utils.TestContants;
 using BookingApp.RoomAggregate;
 using BookingApp.Shared;
+using BookingApp.Tests.Unit.Utils.TestContants.Rooms;
+using BookingApp.Tests.Unit.Utils.TestContants.Schared;
 
-namespace Booking.Tests.Unit.Utils;
+namespace BookingApp.Tests.Unit.Utils;
 
 public static class TestRoomFactory
 {

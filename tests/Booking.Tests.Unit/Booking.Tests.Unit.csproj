@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <IsPackable>false</IsPackable>
-    <RootNamespace>Booking.Tests.Unit</RootNamespace>
+    <RootNamespace>BookingApp.Tests.Unit</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

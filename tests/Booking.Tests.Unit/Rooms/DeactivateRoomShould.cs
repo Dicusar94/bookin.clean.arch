@@ -1,10 +1,10 @@
-using Booking.Tests.Unit.Utils;
 using BookingApp.RoomAggregate;
 using BookingApp.RoomAggregate.Events;
+using BookingApp.Tests.Unit.Utils;
 using Microsoft.Extensions.Time.Testing;
 using Shouldly;
 
-namespace Booking.Tests.Unit.Rooms;
+namespace BookingApp.Tests.Unit.Rooms;
 
 public class DeactivateRoomShould
 {

@@ -1,3 +1,4 @@
+using BookingApp.BookingAggregate.Events;
 using BookingApp.Entities;
 using BookingApp.Shared;
 
@@ -30,7 +31,7 @@ public class Booking : AggregateRoot
             throw new ApplicationException(message);
         }
 
-        if (timeProvider.GetUtcNow() < new DateTime(date, timeRange.Start))
+        if (timeProvider.GetUtcNow() > new DateTime(date, timeRange.Start))
         {
             throw new ApplicationException("Booking can be only in the future");
         }
@@ -40,6 +41,9 @@ public class Booking : AggregateRoot
         Date = date;
         TimeRange = timeRange;
         Status = BookingStatus.Pending;
+        
+        AddDomainEvent(new BookingCreatedEvent(Id));
+        AddDomainEvent(new BookingPendingConfirmationEvent(Id, timeProvider.GetUtcNow()));
     }
     
     private Booking(){}
