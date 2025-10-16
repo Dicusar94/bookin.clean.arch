@@ -29,7 +29,7 @@ public static class TelemetryExtensions
         return activity;
     }
 
-    public static Activity? SetRoomId(this Activity? activity, string roomId)
+    public static Activity? SetRoomId(this Activity? activity, Guid roomId)
     {
         activity?.SetTag(GlobalOTelTags.RoomId, roomId);
         return activity;
