@@ -1,8 +1,11 @@
 using BookingApp.BookingAggregate;
+using BookingApp.RoomAggregate;
 
 namespace BookingApp.Shared;
 
 public interface IUnitOfWork
 {
-    IBookingRepository Booking { get; } 
+    IRoomRepository Rooms { get; }
+    IBookingRepository Bookings { get; } 
+    Task SaveChangesAsync(CancellationToken cancellationToken);
 }
