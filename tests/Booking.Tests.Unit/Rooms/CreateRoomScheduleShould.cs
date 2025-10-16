@@ -43,6 +43,36 @@ public class CreateRoomScheduleShould
         schedule.TimeRange.ShouldBe(TimeRangeConstants.NineToEleven);
         schedule.Date.ShouldBe(DateTimeConstants.DateNow);
     }
+
+    [Fact]
+    public void Create_with_date_and_isrecurring_should_fail()
+    {
+        // arrange && act
+        var action = () => new RoomSchedule(
+            roomId: RoomConstants.Id,
+            dayOfWeek: DateTimeConstants.DayOfWeek,
+            isRecurring: true,
+            date: DateTimeConstants.DateNow,
+            timeRange: TimeRangeConstants.NineToEleven);
+        
+        // assert
+        action.ShouldThrow<Exception>();
+    }
+    
+    [Fact]
+    public void Create_without_date_and_is_not_recurring_should_fail()
+    {
+        // arrange && act
+        var action = () => new RoomSchedule(
+            roomId: RoomConstants.Id,
+            dayOfWeek: DateTimeConstants.DayOfWeek,
+            isRecurring: false,
+            date: null,
+            timeRange: TimeRangeConstants.NineToEleven);
+        
+        // assert
+        action.ShouldThrow<Exception>();
+    }
     
     [Fact]
     public void Concrete_with_date_in_the_past_should_fail()
