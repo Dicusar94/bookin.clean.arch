@@ -11,7 +11,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     {
         base.OnModelCreating(builder);
 
-        builder.HasDefaultSchema("bookings");
+        builder.HasDefaultSchema("room-booking");
+        builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
