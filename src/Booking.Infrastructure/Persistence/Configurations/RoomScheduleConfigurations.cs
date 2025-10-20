@@ -9,6 +9,8 @@ public class RoomScheduleConfigurations : IEntityTypeConfiguration<RoomSchedule>
 {
     public void Configure(EntityTypeBuilder<RoomSchedule> builder)
     {
+        builder.ToTable("RoomSchedules");
+        
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Id)

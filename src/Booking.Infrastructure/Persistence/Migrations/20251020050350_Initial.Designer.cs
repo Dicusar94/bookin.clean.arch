@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BookingApp.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251020045215_Initial")]
+    [Migration("20251020050350_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -47,7 +47,7 @@ namespace BookingApp.Persistence.Migrations
 
                     b.HasIndex("RoomId");
 
-                    b.ToTable("Booking", "room-booking");
+                    b.ToTable("Bookings", "room-booking");
                 });
 
             modelBuilder.Entity("BookingApp.RoomAggregate.Room", b =>
@@ -92,7 +92,7 @@ namespace BookingApp.Persistence.Migrations
 
                     b.HasIndex("RoomId", "DayOfWeek", "IsRecurring", "Date");
 
-                    b.ToTable("RoomSchedule", "room-booking");
+                    b.ToTable("RoomSchedules", "room-booking");
                 });
 
             modelBuilder.Entity("BookingApp.BookingAggregate.Booking", b =>
@@ -116,7 +116,7 @@ namespace BookingApp.Persistence.Migrations
 
                             b1.HasKey("BookingId");
 
-                            b1.ToTable("Booking", "room-booking");
+                            b1.ToTable("Bookings", "room-booking");
 
                             b1.WithOwner()
                                 .HasForeignKey("BookingId");
@@ -147,7 +147,7 @@ namespace BookingApp.Persistence.Migrations
 
                             b1.HasKey("RoomScheduleId");
 
-                            b1.ToTable("RoomSchedule", "room-booking");
+                            b1.ToTable("RoomSchedules", "room-booking");
 
                             b1.WithOwner()
                                 .HasForeignKey("RoomScheduleId");

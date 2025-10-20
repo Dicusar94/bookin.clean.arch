@@ -30,7 +30,7 @@ namespace BookingApp.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Booking",
+                name: "Bookings",
                 schema: "room-booking",
                 columns: table => new
                 {
@@ -44,9 +44,9 @@ namespace BookingApp.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Booking", x => x.Id);
+                    table.PrimaryKey("PK_Bookings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Booking_Rooms_RoomId",
+                        name: "FK_Bookings_Rooms_RoomId",
                         column: x => x.RoomId,
                         principalSchema: "room-booking",
                         principalTable: "Rooms",
@@ -55,7 +55,7 @@ namespace BookingApp.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoomSchedule",
+                name: "RoomSchedules",
                 schema: "room-booking",
                 columns: table => new
                 {
@@ -69,9 +69,9 @@ namespace BookingApp.Persistence.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoomSchedule", x => x.Id);
+                    table.PrimaryKey("PK_RoomSchedules", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RoomSchedule_Rooms_RoomId",
+                        name: "FK_RoomSchedules_Rooms_RoomId",
                         column: x => x.RoomId,
                         principalSchema: "room-booking",
                         principalTable: "Rooms",
@@ -80,15 +80,15 @@ namespace BookingApp.Persistence.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Booking_RoomId",
+                name: "IX_Bookings_RoomId",
                 schema: "room-booking",
-                table: "Booking",
+                table: "Bookings",
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoomSchedule_RoomId_DayOfWeek_IsRecurring_Date",
+                name: "IX_RoomSchedules_RoomId_DayOfWeek_IsRecurring_Date",
                 schema: "room-booking",
-                table: "RoomSchedule",
+                table: "RoomSchedules",
                 columns: new[] { "RoomId", "DayOfWeek", "IsRecurring", "Date" });
         }
 
@@ -96,11 +96,11 @@ namespace BookingApp.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Booking",
+                name: "Bookings",
                 schema: "room-booking");
 
             migrationBuilder.DropTable(
-                name: "RoomSchedule",
+                name: "RoomSchedules",
                 schema: "room-booking");
 
             migrationBuilder.DropTable(
