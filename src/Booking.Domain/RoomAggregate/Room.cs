@@ -78,6 +78,11 @@ public class Room : AggregateRoot
             Id: Id,
             OnDateTime: timeProvider.GetUtcNow().DateTime));
     }
+
+    public bool IsAvailableOn(DateOnly date, TimeRange requestedTime)
+    {
+        return _schedules.Any(x => x.CoversWith(date, requestedTime));
+    }
     
     private bool HasOverlapWithExisting(RoomSchedule newSchedule)
         => _schedules.Any(existing => existing.OverlapsWith(newSchedule)); 

@@ -27,6 +27,11 @@ public class TimeRange : ValueObject
         return Start < other.End && other.Start < End;
     }
 
+    public bool CoversWith(TimeRange other)
+    {
+        return Start <= other.Start && End >= other.End;
+    }
+
     public bool HasValidDuration(TimeSpan min, TimeSpan max)
     {
         return Duration >= min && Duration <= max;

@@ -57,6 +57,15 @@ public class RoomSchedule : Entity
         return false;
     }
 
+    public bool CoversWith(DateOnly date, TimeRange requestedTime)
+    {
+        if (IsRecurring && date.DayOfWeek != DayOfWeek) return false;
+        
+        if (!IsRecurring && Date.HasValue && Date.Value != date) return false;
+
+        return TimeRange.CoversWith(requestedTime);
+    }
+
     public RoomSchedule WithTimeRange(TimeRange newTimeRange)
     {
         return new RoomSchedule(
