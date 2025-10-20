@@ -19,7 +19,7 @@ public class CreateBookingShould
             roomId: RoomConstants.Id,
             userId: UserConstants.Id,
             date: DateTimeConstants.DateNow,
-            timeRange: TimeRangeConstants.NineToEleven,
+            timeRange: TimeRangeConstants.NineAmToElevenAm,
             timeProvider: DateTimeConstants.TimeProvider,
             id: BookingConstants.Id);
 
@@ -27,7 +27,7 @@ public class CreateBookingShould
         booking.RoomId.ShouldBe(RoomConstants.Id);
         booking.UserId.ShouldBe(UserConstants.Id);
         booking.Date.ShouldBe(DateTimeConstants.DateNow);
-        booking.TimeRange.ShouldBe(TimeRangeConstants.NineToEleven);
+        booking.TimeRange.ShouldBe(TimeRangeConstants.NineAmToElevenAm);
         booking.Id.ShouldBe(BookingConstants.Id);
     }
     

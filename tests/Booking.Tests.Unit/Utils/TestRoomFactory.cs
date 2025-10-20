@@ -26,7 +26,7 @@ public static class TestRoomFactory
         return RoomScheduleFactory.Recurring(
             roomId: roomId ?? RoomConstants.Id,
             dayOfWeek: dayOfWeek ?? DayOfWeek.Monday,
-            timeRange: timeRange ?? TimeRangeConstants.NineToEleven);
+            timeRange: timeRange ?? TimeRangeConstants.NineAmToElevenAm);
     }
 
     public static RoomSchedule CreateConcreteSchedule(
@@ -37,7 +37,7 @@ public static class TestRoomFactory
     {
         return RoomScheduleFactory.Concrete(
             roomId: roomId ?? RoomConstants.Id,
-            timeRange: timeRange ?? TimeRangeConstants.NineToEleven,
+            timeRange: timeRange ?? TimeRangeConstants.NineAmToElevenAm,
             date: date ?? DateTimeConstants.DateNow,
             today: today ?? DateTimeConstants.DateTimeNow);
     }

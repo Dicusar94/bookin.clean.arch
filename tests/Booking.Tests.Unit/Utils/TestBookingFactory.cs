@@ -24,7 +24,7 @@ public static class TestBookingFactory
             userId: userId ?? UserConstants.Id,
             date: date ?? DateTimeConstants.DateNow,
             timeProvider: timeProvider ?? new FakeTimeProvider(new DateTimeOffset(DateTimeConstants.DateTimeNow)),
-            timeRange: timeRange ?? TimeRangeConstants.NineToEleven,
+            timeRange: timeRange ?? TimeRangeConstants.NineAmToElevenAm,
             id: id ?? BookingConstants.Id);
     }
 }

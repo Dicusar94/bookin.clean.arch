@@ -14,11 +14,11 @@ public class RescheduleRoomShould
         var room = TestRoomFactory.CreateRoom();
         
         var schedule = TestRoomFactory.CreateRecurringSchedule(
-            timeRange: TimeRangeConstants.NineToEleven);
+            timeRange: TimeRangeConstants.NineAmToElevenAm);
         
         room.AddSchedule(schedule);
 
-        var newTimeRange = TimeRangeConstants.ElevenToTwelve;
+        var newTimeRange = TimeRangeConstants.ElevenAmToTwelvePm;
 
         // act
         room.Reschedule(roomScheduleId: schedule.Id, newTimeRange);
@@ -36,15 +36,15 @@ public class RescheduleRoomShould
         var room = TestRoomFactory.CreateRoom();
         
         var schedule1 = TestRoomFactory.CreateRecurringSchedule(
-            timeRange: TimeRangeConstants.NineToEleven);
+            timeRange: TimeRangeConstants.NineAmToElevenAm);
         
         var schedule2 = TestRoomFactory.CreateRecurringSchedule(
-            timeRange: TimeRangeConstants.ElevenToTwelve);
+            timeRange: TimeRangeConstants.ElevenAmToTwelvePm);
         
         room.AddSchedule(schedule1);
         room.AddSchedule(schedule2);
 
-        var newTimeRange = TimeRangeConstants.TenToTwelve;
+        var newTimeRange = TimeRangeConstants.TenAmToTwelvePm;
 
         // act
         var action = () => room.Reschedule(roomScheduleId: schedule1.Id, newTimeRange);
@@ -60,14 +60,14 @@ public class RescheduleRoomShould
         var room = TestRoomFactory.CreateRoom();
         
         var schedule1 = TestRoomFactory.CreateRecurringSchedule(
-            timeRange: TimeRangeConstants.NineToEleven);
+            timeRange: TimeRangeConstants.NineAmToElevenAm);
         
         var schedule2 = TestRoomFactory.CreateRecurringSchedule(
-            timeRange: TimeRangeConstants.ElevenToTwelve);
+            timeRange: TimeRangeConstants.ElevenAmToTwelvePm);
         
         room.AddSchedule(schedule1);
 
-        var newTimeRange = TimeRangeConstants.TenToTwelve;
+        var newTimeRange = TimeRangeConstants.TenAmToTwelvePm;
 
         // act
         var action = () => room.Reschedule(roomScheduleId: schedule2.Id, newTimeRange);

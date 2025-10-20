@@ -14,7 +14,7 @@ public class AddRoomScheduleShould
         
         var schedule = TestRoomFactory.CreateRecurringSchedule(
             roomId: room.Id,
-            timeRange: TimeRangeConstants.NineToEleven);
+            timeRange: TimeRangeConstants.NineAmToElevenAm);
         
         // act
         room.AddSchedule(schedule);
@@ -31,17 +31,17 @@ public class AddRoomScheduleShould
 
         var schedule1 = TestRoomFactory.CreateRecurringSchedule(
             roomId: room.Id,
-            timeRange: TimeRangeConstants.NineToEleven);
+            timeRange: TimeRangeConstants.NineAmToElevenAm);
         
         var schedule2 = TestRoomFactory.CreateConcreteSchedule(
             roomId: room.Id,
             date: DateTimeConstants.DateNow,
-            timeRange: TimeRangeConstants.ElevenToTwelve);
+            timeRange: TimeRangeConstants.ElevenAmToTwelvePm);
         
         var schedule3 = TestRoomFactory.CreateConcreteSchedule(
             roomId: room.Id,
             date: DateTimeConstants.DateNow.AddDays(1),
-            timeRange: TimeRangeConstants.ElevenToTwelve);
+            timeRange: TimeRangeConstants.ElevenAmToTwelvePm);
         
         room.AddSchedule(schedule1);
         room.AddSchedule(schedule2);
@@ -61,11 +61,11 @@ public class AddRoomScheduleShould
 
         var schedule1 = TestRoomFactory.CreateRecurringSchedule(
             roomId: room.Id,
-            timeRange: TimeRangeConstants.NineToEleven);
+            timeRange: TimeRangeConstants.NineAmToElevenAm);
         
         var schedule2 = TestRoomFactory.CreateConcreteSchedule(
             roomId: room.Id,
-            timeRange: TimeRangeConstants.TenToTwelve);
+            timeRange: TimeRangeConstants.TenAmToTwelvePm);
         
         room.AddSchedule(schedule1);
         
@@ -84,7 +84,7 @@ public class AddRoomScheduleShould
         
         var schedule = TestRoomFactory.CreateRecurringSchedule(
             roomId: Guid.NewGuid(),
-            timeRange: TimeRangeConstants.NineToEleven);
+            timeRange: TimeRangeConstants.NineAmToElevenAm);
         
         // act
         var action = () => room.AddSchedule(schedule);
@@ -101,11 +101,11 @@ public class AddRoomScheduleShould
 
         var schedule1 = TestRoomFactory.CreateRecurringSchedule(
             roomId: room.Id,
-            timeRange: TimeRangeConstants.NineToEleven);
+            timeRange: TimeRangeConstants.NineAmToElevenAm);
         
         var schedule2 = TestRoomFactory.CreateRecurringSchedule(
             roomId: room.Id,
-            timeRange: TimeRangeConstants.TenToTwelve);
+            timeRange: TimeRangeConstants.TenAmToTwelvePm);
         
         room.AddSchedule(schedule1);
         

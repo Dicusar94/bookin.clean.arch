@@ -14,14 +14,14 @@ public class CreateRoomScheduleShould
         var schedule = RoomScheduleFactory.Recurring(
             roomId: RoomConstants.Id,
             dayOfWeek: DateTimeConstants.DayOfWeek,
-            timeRange: TimeRangeConstants.NineToEleven,
+            timeRange: TimeRangeConstants.NineAmToElevenAm,
             id: RoomScheduleConstants.Id);
         
         // assert
         schedule.Id.ShouldBe(RoomScheduleConstants.Id);
         schedule.IsRecurring.ShouldBeTrue();
         schedule.DayOfWeek.ShouldBe(DateTimeConstants.DayOfWeek);
-        schedule.TimeRange.ShouldBe(TimeRangeConstants.NineToEleven);
+        schedule.TimeRange.ShouldBe(TimeRangeConstants.NineAmToElevenAm);
         schedule.Date.ShouldBeNull();
     }
     
@@ -31,7 +31,7 @@ public class CreateRoomScheduleShould
         // arrange && act
         var schedule = RoomScheduleFactory.Concrete(
             roomId: RoomConstants.Id,
-            timeRange: TimeRangeConstants.NineToEleven,
+            timeRange: TimeRangeConstants.NineAmToElevenAm,
             date: DateTimeConstants.DateNow,
             today: DateTimeConstants.DateTimeNow,
             id: RoomScheduleConstants.Id);
@@ -40,7 +40,7 @@ public class CreateRoomScheduleShould
         schedule.Id.ShouldBe(RoomScheduleConstants.Id);
         schedule.IsRecurring.ShouldBeFalse();
         schedule.DayOfWeek.ShouldBe(DateTimeConstants.DateNow.DayOfWeek);
-        schedule.TimeRange.ShouldBe(TimeRangeConstants.NineToEleven);
+        schedule.TimeRange.ShouldBe(TimeRangeConstants.NineAmToElevenAm);
         schedule.Date.ShouldBe(DateTimeConstants.DateNow);
     }
 
@@ -53,7 +53,7 @@ public class CreateRoomScheduleShould
             dayOfWeek: DateTimeConstants.DayOfWeek,
             isRecurring: true,
             date: DateTimeConstants.DateNow,
-            timeRange: TimeRangeConstants.NineToEleven);
+            timeRange: TimeRangeConstants.NineAmToElevenAm);
         
         // assert
         action.ShouldThrow<Exception>();
@@ -68,7 +68,7 @@ public class CreateRoomScheduleShould
             dayOfWeek: DateTimeConstants.DayOfWeek,
             isRecurring: false,
             date: null,
-            timeRange: TimeRangeConstants.NineToEleven);
+            timeRange: TimeRangeConstants.NineAmToElevenAm);
         
         // assert
         action.ShouldThrow<Exception>();
@@ -80,7 +80,7 @@ public class CreateRoomScheduleShould
         // arrange && act
         var action = () => RoomScheduleFactory.Concrete(
             roomId: RoomConstants.Id,
-            timeRange: TimeRangeConstants.NineToEleven,
+            timeRange: TimeRangeConstants.NineAmToElevenAm,
             date: DateTimeConstants.DateNow.AddDays(-1),
             today: DateTimeConstants.DateTimeNow,
             id: RoomScheduleConstants.Id);
