@@ -11,7 +11,7 @@ public static class TelemetryExtensions
         return activity;
     }
     
-    public static Activity? SetUserId(this Activity? activity, string id)
+    public static Activity? SetUserId(this Activity? activity, Guid id)
     {
         activity?.SetTag(GlobalOTelTags.UserId, id);
         return activity;
@@ -32,6 +32,12 @@ public static class TelemetryExtensions
     public static Activity? SetRoomId(this Activity? activity, Guid roomId)
     {
         activity?.SetTag(GlobalOTelTags.RoomId, roomId);
+        return activity;
+    }
+
+    public static Activity? SetBookingId(this Activity? activity, Guid bookingId)
+    {
+        activity?.SetTag(GlobalOTelTags.BookingId, bookingId);
         return activity;
     }
     

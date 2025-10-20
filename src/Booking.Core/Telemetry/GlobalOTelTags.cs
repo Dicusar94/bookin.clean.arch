@@ -8,6 +8,7 @@ public static class GlobalOTelTags
     public const string UtcDateTimeOffset = "utcTimeOffset";
     public const string UserId = "userId";
     public const string RoomId = "roomId";
+    public const string BookingId = "bookingId";
     public const string RoomName = "roomName";
     public const string RoomStatus = "roomStatus";
 }
