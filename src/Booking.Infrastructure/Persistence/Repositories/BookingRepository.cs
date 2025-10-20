@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using BookingApp.BookingAggregate;
 using BookingApp.Exceptions;
+using BookingApp.Shared;
 using BookingApp.Telemetry;
 using Microsoft.EntityFrameworkCore;
 
@@ -43,6 +44,36 @@ public class BookingRepository(ApplicationDbContext context) : IBookingRepositor
         }
 
         return booking;
+    }
+
+    public async Task<IReadOnlyList<Booking>> GetOverlappingBookingsAsync(
+        Guid roomId, 
+        DateOnly date, 
+        TimeRange timeRange, 
+        CancellationToken ct = default)
+    {
+        return await context.Bookings
+            .Where(x => 
+                x.RoomId == roomId &&
+                x.Date == date &&
+                x.TimeRange.Start < timeRange.End &&
+                x.TimeRange.End > timeRange.Start)
+            .ToListAsync(ct);
+    }
+
+    public async Task<bool> HasOverlappingUserBookingAsync(
+        Guid userId,
+        DateOnly date,
+        TimeRange timeRange,
+        CancellationToken ct)
+    {
+        return await context.Bookings
+            .AnyAsync(x =>
+                x.UserId == userId &&
+                x.Date == date &&
+                x.TimeRange.Start < timeRange.End &&
+                x.TimeRange.End > timeRange.Start, 
+                ct);
     }
 }
 
