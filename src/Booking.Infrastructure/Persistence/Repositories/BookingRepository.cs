@@ -76,16 +76,3 @@ public class BookingRepository(ApplicationDbContext context) : IBookingRepositor
                 ct);
     }
 }
-
-file static class Extensions
-{
-    public static Activity? SetBooking(this Activity? activity, Booking booking)
-    {
-        return activity?
-            .SetRoomId(booking.RoomId)
-            .SetUserId(booking.UserId)
-            .SetBookingId(booking.Id)
-            ?.SetTag("Date", booking.Date)
-            .SetTag("TimeRange", booking.TimeRange);
-    }
-}
