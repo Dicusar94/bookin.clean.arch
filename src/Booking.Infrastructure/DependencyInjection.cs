@@ -1,5 +1,6 @@
 using BookingApp.BookingAggregate.Services;
 using BookingApp.DomainServices;
+using BookingApp.DomainServices.Bookings;
 using BookingApp.ExternalConfigs;
 using BookingApp.FeatureToggles;
 using BookingApp.Messaging;

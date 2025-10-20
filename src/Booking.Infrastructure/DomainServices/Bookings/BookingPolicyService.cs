@@ -3,7 +3,7 @@ using BookingApp.BookingAggregate.Services;
 using BookingApp.RoomAggregate;
 using BookingApp.Telemetry;
 
-namespace BookingApp.DomainServices;
+namespace BookingApp.DomainServices.Bookings;
 
 public class BookingPolicyService(
     IRoomRepository roomRepository, 
