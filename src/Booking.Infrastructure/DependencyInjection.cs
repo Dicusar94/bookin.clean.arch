@@ -19,6 +19,8 @@ public static class DependencyInjection
         builder.AddFeatureToggles();
         builder.AddPersistence();
         builder.AddDomainServices();
+
+        builder.Services.AddSingleton(TimeProvider.System);
         
         return builder;
     }

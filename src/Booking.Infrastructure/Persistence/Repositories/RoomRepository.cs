@@ -7,7 +7,7 @@ namespace BookingApp.Persistence.Repositories;
 
 public class RoomRepository(ApplicationDbContext context) : IRoomRepository
 {
-    public async Task<Room> AddRoom(Room room)
+    public async Task<Room> AddRoom(Room room, CancellationToken ct)
     {
         var dbActivity = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetRoomId(room.Id)
@@ -21,11 +21,11 @@ public class RoomRepository(ApplicationDbContext context) : IRoomRepository
             throw exception;
         }
 
-        await context.Rooms.AddAsync(room);
+        await context.Rooms.AddAsync(room, ct);
         return room;
     }
 
-    public Task<Room> UpdateRoom(Room room)
+    public Task<Room> UpdateRoom(Room room, CancellationToken _)
     {
         var dbActivity = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetRoomId(room.Id)
@@ -43,14 +43,14 @@ public class RoomRepository(ApplicationDbContext context) : IRoomRepository
         return Task.FromResult(room);
     }
 
-    public async Task<Room> GetRoomById(Guid id)
+    public async Task<Room> GetRoomById(Guid id, CancellationToken ct)
     {
         var dbActivity = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetRoomId(id);
 
         var room = await context.Rooms
             .Include(x => x.Schedules)
-            .FirstOrDefaultAsync(x => x.Id == id);
+            .FirstOrDefaultAsync(x => x.Id == id, ct);
 
         if (room is null)
         {

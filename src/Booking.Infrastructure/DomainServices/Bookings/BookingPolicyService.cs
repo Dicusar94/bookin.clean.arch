@@ -14,7 +14,7 @@ public class BookingPolicyService(
         var activity = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetBooking(booking);
         
-        var room = await roomRepository.GetRoomById(booking.RoomId);
+        var room = await roomRepository.GetRoomById(booking.RoomId, ct);
 
         if (!room.IsAvailableOn(booking.Date, booking.TimeRange))
         {

@@ -44,7 +44,7 @@ public class Room : AggregateRoot
             RoomScheduleId: schedule.Id));
     }
 
-    public void Reschedule(Guid roomScheduleId, TimeRange newTimeRange)
+    public RoomSchedule Reschedule(Guid roomScheduleId, TimeRange newTimeRange)
     {
         var schedule = Schedules.FirstOrDefault(x => x.Id == roomScheduleId);
 
@@ -63,6 +63,8 @@ public class Room : AggregateRoot
         AddDomainEvent(new RoomScheduleChangedEvent(
             Id: Id,
             RoomScheduleId: roomScheduleId));
+
+        return schedule;
     }
 
     public void Activate()
