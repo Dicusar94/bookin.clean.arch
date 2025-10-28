@@ -2,6 +2,8 @@ using Asp.Versioning;
 using BookingApp.Features.Rooms.Rooms.Commands.Add;
 using BookingApp.Infrastructure.Endpoints;
 using BookingApp.RoomAggregate;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using static BookingApp.Infrastructure.Endpoints.Constants.ContentTypes;
 
 namespace BookingApp.Endpoints.Rooms;
@@ -24,14 +26,15 @@ public class RoomsEndpoint : IEndpointsDefinition
 
         group.MapPost(string.Empty, AddRoom)
             .Accepts<AddRoomCommand>(ApplicationJson)
-            .Produces<Room>(statusCode: 201, ApplicationJson)
+            .Produces<Room>(statusCode: 200, ApplicationJson)
             .ProducesValidationProblem()
             .WithName("AddRoom");
     }
 
-    private static async Task<IResult> AddRoom()
+    private static async Task<IResult> AddRoom(AddRoomCommand command, [FromServices] ISender sender)
     {
-        return Results.Created();
+        var room = await sender.Send(command);
+        return Results.Ok(room);
     }
     
 }

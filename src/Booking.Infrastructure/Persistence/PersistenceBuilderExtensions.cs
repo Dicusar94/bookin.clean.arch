@@ -1,6 +1,7 @@
 using BookingApp.BookingAggregate;
 using BookingApp.Persistence.Repositories;
 using BookingApp.RoomAggregate;
+using BookingApp.Shared;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,7 @@ public static class PersistenceBuilderExtensions
 
     private static IHostApplicationBuilder AddRepositories(this IHostApplicationBuilder builder)
     {
+        builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
         builder.Services.AddScoped<IRoomRepository, RoomRepository>();
         builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 

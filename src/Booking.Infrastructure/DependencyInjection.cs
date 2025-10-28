@@ -1,3 +1,4 @@
+using BookingApp.Abstractions;
 using BookingApp.BookingAggregate.Services;
 using BookingApp.DomainServices;
 using BookingApp.DomainServices.Bookings;
@@ -5,6 +6,8 @@ using BookingApp.ExternalConfigs;
 using BookingApp.FeatureToggles;
 using BookingApp.Messaging;
 using BookingApp.Persistence;
+using BookingApp.Persistence.Repositories;
+using BookingApp.Shared;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -19,6 +22,10 @@ public static class DependencyInjection
         builder.AddFeatureToggles();
         builder.AddPersistence();
         builder.AddDomainServices();
+
+        builder.Services.AddMediatR(config =>
+            config.RegisterServicesFromAssembly(typeof(IApplicationMarker).Assembly));
+
 
         builder.Services.AddSingleton(TimeProvider.System);
         
