@@ -4,7 +4,7 @@ using BookingApp.Infrastructure.Endpoints;
 using BookingApp.RoomAggregate;
 using static BookingApp.Infrastructure.Endpoints.Constants.ContentTypes;
 
-namespace BookingApp.Endpoints;
+namespace BookingApp.Endpoints.Rooms;
 
 public class RoomsEndpoint : IEndpointsDefinition
 {
@@ -22,15 +22,16 @@ public class RoomsEndpoint : IEndpointsDefinition
             .ProducesProblem(statusCode: 400);
             //.RequireAuthorization()
 
-            group.MapPost("", AddRoom)
-                .Accepts<AddRoomCommand>(ApplicationJson)
-                .Produces<Room>(statusCode: 201, ApplicationJson)
-                .ProducesValidationProblem()
-                .WithName("AddRoom");
+        group.MapPost(string.Empty, AddRoom)
+            .Accepts<AddRoomCommand>(ApplicationJson)
+            .Produces<Room>(statusCode: 201, ApplicationJson)
+            .ProducesValidationProblem()
+            .WithName("AddRoom");
     }
 
     private static async Task<IResult> AddRoom()
     {
         return Results.Created();
     }
+    
 }
