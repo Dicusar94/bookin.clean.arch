@@ -1,10 +1,10 @@
 using BookingApp.BookingAggregate.Events;
 using BookingApp.Shared;
-using BookingApp.Tests.Unit.Utils;
-using BookingApp.Tests.Unit.Utils.TestContants.Bookings;
-using BookingApp.Tests.Unit.Utils.TestContants.Rooms;
-using BookingApp.Tests.Unit.Utils.TestContants.Schared;
-using BookingApp.Tests.Unit.Utils.TestContants.Users;
+using BookingApp.Utils;
+using BookingApp.Utils.TestContants.Bookings;
+using BookingApp.Utils.TestContants.Rooms;
+using BookingApp.Utils.TestContants.Schared;
+using BookingApp.Utils.TestContants.Users;
 using Shouldly;
 
 namespace BookingApp.Tests.Unit.Bookings;

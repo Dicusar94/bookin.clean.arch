@@ -1,4 +1,4 @@
-using BookingApp.Tests.Unit.Utils.TestContants.Schared;
+using BookingApp.Utils.TestContants.Schared;
 using Shouldly;
 
 namespace BookingApp.Tests.Unit.Shared.TimeRanges;

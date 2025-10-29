@@ -1,6 +1,6 @@
 using BookingApp.Shared;
 
-namespace BookingApp.Tests.Unit.Utils.TestContants.Schared;
+namespace BookingApp.Utils.TestContants.Schared;
 
 public class TimeRangeConstants
 {

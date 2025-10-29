@@ -1,5 +1,5 @@
-using BookingApp.Tests.Unit.Utils;
-using BookingApp.Tests.Unit.Utils.TestContants.Schared;
+using BookingApp.Utils;
+using BookingApp.Utils.TestContants.Schared;
 using Shouldly;
 
 namespace BookingApp.Tests.Unit.Rooms;

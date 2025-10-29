@@ -1,4 +1,4 @@
-namespace BookingApp.Tests.Unit.Utils.TestContants.Bookings;
+namespace BookingApp.Utils.TestContants.Bookings;
 
 public class BookingConstants
 {

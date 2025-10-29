@@ -1,6 +1,6 @@
 using BookingApp.RoomAggregate;
-using BookingApp.Tests.Unit.Utils;
-using BookingApp.Tests.Unit.Utils.TestContants.Rooms;
+using BookingApp.Utils;
+using BookingApp.Utils.TestContants.Rooms;
 using Shouldly;
 
 namespace BookingApp.Tests.Unit.Rooms;

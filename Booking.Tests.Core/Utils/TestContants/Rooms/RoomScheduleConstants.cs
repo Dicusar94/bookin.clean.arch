@@ -1,4 +1,4 @@
-namespace BookingApp.Tests.Unit.Utils.TestContants.Rooms;
+namespace BookingApp.Utils.TestContants.Rooms;
 
 public class RoomScheduleConstants
 {

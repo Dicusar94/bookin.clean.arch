@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Time.Testing;
 
-namespace BookingApp.Tests.Unit.Utils.TestContants.Schared;
+namespace BookingApp.Utils.TestContants.Schared;
 
 public class DateTimeConstants
 {

@@ -1,12 +1,12 @@
 using BookingApp.BookingAggregate;
 using BookingApp.Shared;
-using BookingApp.Tests.Unit.Utils.TestContants.Bookings;
-using BookingApp.Tests.Unit.Utils.TestContants.Rooms;
-using BookingApp.Tests.Unit.Utils.TestContants.Schared;
-using BookingApp.Tests.Unit.Utils.TestContants.Users;
+using BookingApp.Utils.TestContants.Bookings;
+using BookingApp.Utils.TestContants.Rooms;
+using BookingApp.Utils.TestContants.Schared;
+using BookingApp.Utils.TestContants.Users;
 using Microsoft.Extensions.Time.Testing;
 
-namespace BookingApp.Tests.Unit.Utils;
+namespace BookingApp.Utils;
 
 public static class TestBookingFactory
 {
