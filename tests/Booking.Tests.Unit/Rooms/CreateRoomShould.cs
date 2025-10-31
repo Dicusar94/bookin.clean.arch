@@ -14,10 +14,10 @@ public class CreateRoomShould
         var room = TestRoomFactory.CreateRoom(
             name: RoomConstants.Name,
             capacity: RoomConstants.Capacity,
-            id: RoomConstants.Id);
+            id: RoomConstants.Room1Id);
         
         // assert
-        room.Id.ShouldBe(RoomConstants.Id);
+        room.Id.ShouldBe(RoomConstants.Room1Id);
         room.Name.ShouldBe(RoomConstants.Name);
         room.Capacity.ShouldBe(RoomConstants.Capacity);
         room.Status.ShouldBe(RoomStatus.Inactive);
@@ -33,7 +33,7 @@ public class CreateRoomShould
         var action = () => TestRoomFactory.CreateRoom(
             name: name,
             capacity: capacity,
-            id: RoomConstants.Id);
+            id: RoomConstants.Room1Id);
         
         // assert
         action.ShouldThrow<Exception>();

@@ -16,19 +16,19 @@ public class CreateBookingShould
     {
         // arrange & act
         var booking = TestBookingFactory.Create(
-            roomId: RoomConstants.Id,
-            userId: UserConstants.Id,
+            roomId: RoomConstants.Room1Id,
+            userId: UserConstants.User1Id,
             date: DateTimeConstants.DateNow,
             timeRange: TimeRangeConstants.NineAmToElevenAm,
             timeProvider: DateTimeConstants.TimeProvider,
-            id: BookingConstants.Id);
+            id: BookingConstants.Booking1Id);
 
         // assert
-        booking.RoomId.ShouldBe(RoomConstants.Id);
-        booking.UserId.ShouldBe(UserConstants.Id);
+        booking.RoomId.ShouldBe(RoomConstants.Room1Id);
+        booking.UserId.ShouldBe(UserConstants.User1Id);
         booking.Date.ShouldBe(DateTimeConstants.DateNow);
         booking.TimeRange.ShouldBe(TimeRangeConstants.NineAmToElevenAm);
-        booking.Id.ShouldBe(BookingConstants.Id);
+        booking.Id.ShouldBe(BookingConstants.Booking1Id);
     }
     
     [Fact]
@@ -36,7 +36,7 @@ public class CreateBookingShould
     {
         // arrange & act
         var booking = TestBookingFactory.Create(
-            id: BookingConstants.Id,
+            id: BookingConstants.Booking1Id,
             timeProvider: DateTimeConstants.TimeProvider);
         
         // assert

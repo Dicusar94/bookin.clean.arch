@@ -12,7 +12,7 @@ public class CreateRoomScheduleShould
     {
         // arrange && act
         var schedule = RoomScheduleFactory.Recurring(
-            roomId: RoomConstants.Id,
+            roomId: RoomConstants.Room1Id,
             dayOfWeek: DateTimeConstants.DayOfWeek,
             timeRange: TimeRangeConstants.NineAmToElevenAm,
             id: RoomScheduleConstants.Id);
@@ -30,7 +30,7 @@ public class CreateRoomScheduleShould
     {
         // arrange && act
         var schedule = RoomScheduleFactory.Concrete(
-            roomId: RoomConstants.Id,
+            roomId: RoomConstants.Room1Id,
             timeRange: TimeRangeConstants.NineAmToElevenAm,
             date: DateTimeConstants.DateNow,
             today: DateTimeConstants.DateTimeNow,
@@ -49,7 +49,7 @@ public class CreateRoomScheduleShould
     {
         // arrange && act
         var action = () => new RoomSchedule(
-            roomId: RoomConstants.Id,
+            roomId: RoomConstants.Room1Id,
             dayOfWeek: DateTimeConstants.DayOfWeek,
             isRecurring: true,
             date: DateTimeConstants.DateNow,
@@ -64,7 +64,7 @@ public class CreateRoomScheduleShould
     {
         // arrange && act
         var action = () => new RoomSchedule(
-            roomId: RoomConstants.Id,
+            roomId: RoomConstants.Room1Id,
             dayOfWeek: DateTimeConstants.DayOfWeek,
             isRecurring: false,
             date: null,
@@ -79,7 +79,7 @@ public class CreateRoomScheduleShould
     {
         // arrange && act
         var action = () => RoomScheduleFactory.Concrete(
-            roomId: RoomConstants.Id,
+            roomId: RoomConstants.Room1Id,
             timeRange: TimeRangeConstants.NineAmToElevenAm,
             date: DateTimeConstants.DateNow.AddDays(-1),
             today: DateTimeConstants.DateTimeNow,

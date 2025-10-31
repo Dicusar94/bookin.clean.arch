@@ -20,11 +20,11 @@ public static class TestBookingFactory
     )
     {
         return new Booking(
-            roomId: roomId ?? RoomConstants.Id,
-            userId: userId ?? UserConstants.Id,
+            roomId: roomId ?? RoomConstants.Room1Id,
+            userId: userId ?? UserConstants.User1Id,
             date: date ?? DateTimeConstants.DateNow,
             timeProvider: timeProvider ?? new FakeTimeProvider(new DateTimeOffset(DateTimeConstants.DateTimeNow)),
             timeRange: timeRange ?? TimeRangeConstants.NineAmToElevenAm,
-            id: id ?? BookingConstants.Id);
+            id: id ?? BookingConstants.Booking1Id);
     }
 }

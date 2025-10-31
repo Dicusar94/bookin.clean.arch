@@ -26,6 +26,7 @@
     <PackageVersion Include="OpenTelemetry.Api" Version="1.13.1" />
     <!--RabbitMq-->
     <PackageVersion Include="RabbitMQ.Client" Version="6.5.0" />
+    <PackageVersion Include="Respawn" Version="6.2.1" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="Steeltoe.Configuration.ConfigServer" Version="4.0.0" />
     <PackageVersion Include="Swashbuckle.AspNetCore" Version="9.0.6" />
