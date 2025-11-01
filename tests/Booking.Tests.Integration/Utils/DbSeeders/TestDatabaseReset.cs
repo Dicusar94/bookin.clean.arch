@@ -15,7 +15,7 @@ public class TestDatabaseReset(string connectionString)
         _respawner = await Respawner.CreateAsync(connection, new RespawnerOptions
         {
             DbAdapter = DbAdapter.Postgres,
-            SchemasToInclude = ["public", "postgres", "library"],
+            SchemasToInclude = ["public", "postgres", "library", "room-booking"],
             TablesToIgnore = ["__EFMigrationsHistory"]
         });
     }

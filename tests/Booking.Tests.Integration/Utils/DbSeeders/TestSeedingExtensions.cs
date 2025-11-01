@@ -1,3 +1,4 @@
+using BookingApp.BookingAggregate;
 using BookingApp.Persistence;
 using BookingApp.Utils.TestContants.Bookings;
 using BookingApp.Utils.TestContants.Rooms;
@@ -6,7 +7,7 @@ using BookingApp.Utils.TestContants.Users;
 
 namespace BookingApp.Utils.DbSeeders;
 
-public static class ApplicationDbContextExtensions
+public static class TestSeedingExtensions
 {
     public static async Task SeedAsync(this ApplicationDbContext dbContext, CancellationToken ct = default)
     {
