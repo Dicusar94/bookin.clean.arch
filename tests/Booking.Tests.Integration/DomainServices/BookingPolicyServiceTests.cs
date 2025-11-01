@@ -53,7 +53,6 @@ public class BookingPolicyServiceTests(ApiFactory apiFactory) : IClassFixture<Ap
         
         // assert
         await action.ShouldThrowAsync<Exception>();
- 
     }
     
     [Fact]

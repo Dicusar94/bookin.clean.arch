@@ -483,3 +483,4 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 tests/Booking.Tests.Unit/CoverageReport/*
+tests/Booking.Tests.Integration/CoverageReport/*

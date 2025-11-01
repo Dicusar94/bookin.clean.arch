@@ -3,7 +3,8 @@
 # Run integration tests with coverage
 dotnet test tests/Booking.Tests.Integration/Booking.Tests.Integration.csproj \
   --collect:"XPlat Code Coverage" \
-  /p:Include="[Booking.Web]*[Booking.Application]*[Booking.Infrastructure]*"
+  /p:Include="[Booking.Web]*[Booking.Application]*[Booking.Infrastructure]*"  \
+  /p:Exclude="[Booking.Tests.Core]*"
 
 # Generate HTML report from the coverage file
 reportgenerator \
