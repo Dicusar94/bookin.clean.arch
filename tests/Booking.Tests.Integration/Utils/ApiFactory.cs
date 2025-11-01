@@ -17,12 +17,7 @@ namespace BookingApp.Utils;
 public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
 {
     private readonly PostgreSqlContainer _postgreSqlContainer = new PostgreSqlBuilder().Build();
-    public TestDatabaseReset TestDatabaseReset { get; private set; }
-
-    public ApiFactory()
-    {
-        TestDatabaseReset = new TestDatabaseReset(_postgreSqlContainer.GetConnectionString());
-    }
+    public TestDatabaseReset TestDatabaseReset { get; private set; } = null!;
     
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -74,11 +69,14 @@ public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
 
     public async Task InitializeAsync()
     {
+        await _postgreSqlContainer.StartAsync();
+        
         var dbContext = GetService<ApplicationDbContext>();
         
-        await _postgreSqlContainer.StartAsync();
         await dbContext.Database.MigrateAsync();
         await dbContext.SeedAsync();
+
+        TestDatabaseReset = new TestDatabaseReset(_postgreSqlContainer.GetConnectionString());
     }
 
     public async Task DisposeAsync()
