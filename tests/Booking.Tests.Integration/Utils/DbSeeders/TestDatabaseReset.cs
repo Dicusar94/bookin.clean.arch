@@ -16,7 +16,6 @@ public class TestDatabaseReset(string connectionString)
         {
             DbAdapter = DbAdapter.Postgres,
             SchemasToInclude = ["public", "postgres", "library", "room-booking"],
-            TablesToIgnore = ["__EFMigrationsHistory"]
         });
     }
 

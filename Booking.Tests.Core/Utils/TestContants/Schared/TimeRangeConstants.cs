@@ -24,4 +24,8 @@ public class TimeRangeConstants
     public static TimeRange FourAmToFivePm => TimeRange.Create(
         start: new TimeOnly(16, 0),
         end: new TimeOnly(17, 0));
+    
+    public static TimeRange FiveToSixPm => TimeRange.Create(
+        start: new TimeOnly(17, 0),
+        end: new TimeOnly(18, 0));
 }

@@ -79,6 +79,12 @@ public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
         TestDatabaseReset = new TestDatabaseReset(_postgreSqlContainer.GetConnectionString());
     }
 
+    public Task SeedAsync()
+    {
+        var dbContext = GetService<ApplicationDbContext>();
+        return dbContext.SeedAsync();
+    }
+
     public async Task DisposeAsync()
     {
         await _postgreSqlContainer.StopAsync();
