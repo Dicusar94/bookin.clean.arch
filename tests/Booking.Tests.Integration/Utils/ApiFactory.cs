@@ -3,6 +3,7 @@ using BookingApp.Messaging.Subscriber;
 using BookingApp.Persistence;
 using BookingApp.Properties;
 using BookingApp.Utils.DbSeeders;
+using BookingApp.Utils.TestContants.Schared;
 using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -26,7 +27,14 @@ public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
             // Overwrite the DBContext setup
             ConfigureDatabaseContext(services);
             RemoveRabbitMq(services);
+            StubTimeprovider(services);
         });
+    }
+
+    private static void StubTimeprovider(IServiceCollection services)
+    {
+        services.RemoveAll<TimeProvider>();
+        services.AddSingleton<TimeProvider>(DateTimeConstants.TimeProvider);
     }
 
     private static void RemoveRabbitMq(IServiceCollection services)

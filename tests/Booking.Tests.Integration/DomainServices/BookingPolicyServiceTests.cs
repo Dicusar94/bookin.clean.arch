@@ -1,11 +1,9 @@
 using BookingApp.BookingAggregate.Services;
-using BookingApp.Persistence;
 using BookingApp.Shared;
 using BookingApp.Utils;
 using BookingApp.Utils.TestContants.Rooms;
 using BookingApp.Utils.TestContants.Schared;
 using BookingApp.Utils.TestContants.Users;
-using Microsoft.EntityFrameworkCore;
 using Shouldly;
 
 namespace BookingApp.DomainServices;

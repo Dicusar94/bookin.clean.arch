@@ -32,7 +32,7 @@ public class RoomRepository(ApplicationDbContext context) : IRoomRepository
             .SetRoomName(room.Name)
             .SetRoomStatus(room.Status.ToString());
         
-        if (context.Rooms.Any(x => x.Name == room.Name))
+        if (context.Rooms.Any(x => x.Name == room.Name && x.Id != room.Id))
         {
             var exception = new EntityAlreadyExistsException($"Room with name {room.Name} already exists.");
             dbActivity.AddExceptionAndFail(exception);
