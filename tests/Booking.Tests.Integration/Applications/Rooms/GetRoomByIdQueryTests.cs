@@ -8,13 +8,9 @@ using Shouldly;
 namespace BookingApp.Applications.Rooms;
 
 [Collection(CollectionConstants.ApplicationTests)]
-public class GetRoomByIdQueryTests(ApiFactory apiFactory) :  IAsyncLifetime
+public class GetRoomByIdQueryTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory) 
 {
     private readonly ISender sender = apiFactory.GetService<ISender>();
-    
-    private readonly Func<Task> _initDatabase = apiFactory.TestDatabaseReset.InitializeAsync;
-    private readonly Func<Task> _resetDatabase = apiFactory.TestDatabaseReset.ResetAsync;
-    private readonly Func<Task> _seedDatabase = apiFactory.SeedAsync;
 
     [Fact]
     public async Task Execute_should_succeed()
@@ -40,16 +36,5 @@ public class GetRoomByIdQueryTests(ApiFactory apiFactory) :  IAsyncLifetime
         
         // assert
         action.ShouldThrow<EntityNotFoundException>();
-    }
-    
-    public Task InitializeAsync()
-    {
-        return _initDatabase();
-    }
-
-    public async Task DisposeAsync()
-    {
-        await _resetDatabase();
-        await _seedDatabase();
     }
 }

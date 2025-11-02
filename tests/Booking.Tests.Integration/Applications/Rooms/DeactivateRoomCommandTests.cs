@@ -9,13 +9,9 @@ using Shouldly;
 namespace BookingApp.Applications.Rooms;
 
 [Collection(CollectionConstants.ApplicationTests)]
-public class DeactivateRoomCommandTests(ApiFactory apiFactory) : IAsyncLifetime
+public class DeactivateRoomCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory) 
 {
     private readonly ISender sender = apiFactory.GetService<ISender>();
-    
-    private readonly Func<Task> _initDatabase = apiFactory.TestDatabaseReset.InitializeAsync;
-    private readonly Func<Task> _resetDatabase = apiFactory.TestDatabaseReset.ResetAsync;
-    private readonly Func<Task> _seedDatabase = apiFactory.SeedAsync;
 
     [Fact]
     public async Task Execute_should_succeed()

@@ -7,7 +7,7 @@ using Shouldly;
 namespace BookingApp.Applications.Rooms;
 
 [Collection(CollectionConstants.ApplicationTests)]
-public class AddRoomCommandTests(ApiFactory apiFactory) : IAsyncLifetime
+public class AddRoomCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory) 
 {
     private readonly ISender sender = apiFactory.GetService<ISender>();
     

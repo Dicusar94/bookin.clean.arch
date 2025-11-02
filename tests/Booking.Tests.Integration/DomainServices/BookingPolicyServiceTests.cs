@@ -8,14 +8,10 @@ using Shouldly;
 
 namespace BookingApp.DomainServices;
 
-public class BookingPolicyServiceTests(ApiFactory apiFactory) : IClassFixture<ApiFactory>, IAsyncLifetime
+public class BookingPolicyServiceTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory), IClassFixture<ApiFactory> 
 {
     private readonly IBookingPolicyService _sut = apiFactory.GetService<IBookingPolicyService>();
     private readonly IUnitOfWork _unitOfWork = apiFactory.GetService<IUnitOfWork>();
-
-    private readonly Func<Task> _initDatabase = apiFactory.TestDatabaseReset.InitializeAsync;
-    private readonly Func<Task> _resetDatabase = apiFactory.TestDatabaseReset.ResetAsync;
-    private readonly Func<Task> _seedDatabase = apiFactory.SeedAsync;
 
     [Fact]
     public async Task EnsureBookingCanBeCreatedAsync_should_be_valid()
@@ -98,16 +94,5 @@ public class BookingPolicyServiceTests(ApiFactory apiFactory) : IClassFixture<Ap
         
         // assert
         await action.ShouldThrowAsync<Exception>();
-    }
-
-    public async Task InitializeAsync()
-    {
-        await _initDatabase();
-    }
-
-    public async Task DisposeAsync()
-    {
-        await _resetDatabase();
-        await _seedDatabase();
     }
 }
