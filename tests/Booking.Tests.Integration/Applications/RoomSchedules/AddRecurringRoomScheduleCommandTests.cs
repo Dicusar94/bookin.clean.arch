@@ -1,14 +1,13 @@
-using BookingApp.Features.Rooms.RoomSchedules.Commands.AddConcrete;
+using BookingApp.Features.Rooms.RoomSchedules.Commands.AddRecurring;
 using BookingApp.Utils;
 using BookingApp.Utils.TestContants.Rooms;
-using BookingApp.Utils.TestContants.Schared;
 using MediatR;
 using Shouldly;
 
 namespace BookingApp.Applications.RoomSchedules;
 
 [Collection(CollectionConstants.ApplicationTests)]
-public class AddConcreteRoomScheduleCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory) 
+public class AddRecurringRoomScheduleCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory)
 {
     private readonly ISender sender = apiFactory.GetService<ISender>();
     
@@ -16,11 +15,11 @@ public class AddConcreteRoomScheduleCommandTests(ApiFactory apiFactory) : BaseAs
     public async Task Execute_should_succeed()
     {
         // arrange
-        var command = new AddConcreteRoomScheduleCommand(
+        var command = new AddRecurringRoomScheduleCommand(
             Id: RoomConstants.Room2Id,
-            Date: DateTimeConstants.DateNow.AddDays(1),
+            DayOfWeek: DayOfWeek.Monday,
             Start: new TimeOnly(10, 0),
-            End: new TimeOnly(11, 0));
+            End: new TimeOnly(12, 0));
         
         // act
         var schedule = await sender.Send(command);

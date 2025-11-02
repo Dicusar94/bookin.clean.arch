@@ -20,11 +20,13 @@ public static class TestSeedingExtensions
     {
         var recurringSchedule = TestRoomFactory.CreateRecurringSchedule(
             roomId: RoomConstants.Room1Id,
-            timeRange: TimeRangeConstants.EightAmToFivePm);
+            timeRange: TimeRangeConstants.EightAmToFivePm,
+            id: RoomScheduleConstants.Room1Id1Schedule);
 
         var concreteSchedule = TestRoomFactory.CreateConcreteSchedule(
             roomId: RoomConstants.Room2Id,
-            timeRange: TimeRangeConstants.EightAmToFivePm);
+            timeRange: TimeRangeConstants.EightAmToFivePm,
+            id: RoomScheduleConstants.Room2Id1Schedule);
 
         var room1 = TestRoomFactory.CreateRoom(
             id: RoomConstants.Room1Id,

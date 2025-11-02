@@ -21,24 +21,28 @@ public static class TestRoomFactory
     public static RoomSchedule CreateRecurringSchedule(
         Guid? roomId = null, 
         DayOfWeek? dayOfWeek = null,
-        TimeRange? timeRange = null)
+        TimeRange? timeRange = null,
+        Guid? id = null)
     {
         return RoomScheduleFactory.Recurring(
             roomId: roomId ?? RoomConstants.Room1Id,
             dayOfWeek: dayOfWeek ?? DayOfWeek.Monday,
-            timeRange: timeRange ?? TimeRangeConstants.NineAmToElevenAm);
+            timeRange: timeRange ?? TimeRangeConstants.NineAmToElevenAm,
+            id: id ?? Guid.NewGuid());
     }
 
     public static RoomSchedule CreateConcreteSchedule(
         Guid? roomId = null,
         TimeRange? timeRange = null,
         DateOnly? date = null,
-        DateTime? today = null)
+        DateTime? today = null,
+        Guid? id = null)
     {
         return RoomScheduleFactory.Concrete(
             roomId: roomId ?? RoomConstants.Room1Id,
             timeRange: timeRange ?? TimeRangeConstants.NineAmToElevenAm,
             date: date ?? DateTimeConstants.DateNow,
-            today: today ?? DateTimeConstants.DateTimeNow);
+            today: today ?? DateTimeConstants.DateTimeNow,
+            id: id ?? Guid.NewGuid());
     }
 }

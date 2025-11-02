@@ -11,10 +11,6 @@ public class AddRoomCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiF
 {
     private readonly ISender sender = apiFactory.GetService<ISender>();
     
-    private readonly Func<Task> _initDatabase = apiFactory.TestDatabaseReset.InitializeAsync;
-    private readonly Func<Task> _resetDatabase = apiFactory.TestDatabaseReset.ResetAsync;
-    private readonly Func<Task> _seedDatabase = apiFactory.SeedAsync;
-    
     [Fact]
     public async Task Execute_should_succeed()
     {
@@ -41,16 +37,5 @@ public class AddRoomCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiF
 
         // assert
         action.ShouldThrow<Exception>();
-    }
-
-    public Task InitializeAsync()
-    {
-        return _initDatabase();
-    }
-
-    public async Task DisposeAsync()
-    {
-        await _resetDatabase();
-        await _seedDatabase();
     }
 }

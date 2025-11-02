@@ -25,15 +25,4 @@ public class DeactivateRoomCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTi
         // assert
         room.Status.ShouldBe(RoomStatus.Inactive);
     }
-
-    public Task InitializeAsync()
-    {
-        return _initDatabase();
-    }
-
-    public async Task DisposeAsync()
-    {
-        await _resetDatabase();
-        await _seedDatabase();
-    }
 }

@@ -15,10 +15,10 @@ public class CreateRoomScheduleShould
             roomId: RoomConstants.Room1Id,
             dayOfWeek: DateTimeConstants.DayOfWeek,
             timeRange: TimeRangeConstants.NineAmToElevenAm,
-            id: RoomScheduleConstants.Id);
+            id: RoomScheduleConstants.Room1Id1Schedule);
         
         // assert
-        schedule.Id.ShouldBe(RoomScheduleConstants.Id);
+        schedule.Id.ShouldBe(RoomScheduleConstants.Room1Id1Schedule);
         schedule.IsRecurring.ShouldBeTrue();
         schedule.DayOfWeek.ShouldBe(DateTimeConstants.DayOfWeek);
         schedule.TimeRange.ShouldBe(TimeRangeConstants.NineAmToElevenAm);
@@ -34,10 +34,10 @@ public class CreateRoomScheduleShould
             timeRange: TimeRangeConstants.NineAmToElevenAm,
             date: DateTimeConstants.DateNow,
             today: DateTimeConstants.DateTimeNow,
-            id: RoomScheduleConstants.Id);
+            id: RoomScheduleConstants.Room1Id1Schedule);
         
         // assert
-        schedule.Id.ShouldBe(RoomScheduleConstants.Id);
+        schedule.Id.ShouldBe(RoomScheduleConstants.Room1Id1Schedule);
         schedule.IsRecurring.ShouldBeFalse();
         schedule.DayOfWeek.ShouldBe(DateTimeConstants.DateNow.DayOfWeek);
         schedule.TimeRange.ShouldBe(TimeRangeConstants.NineAmToElevenAm);
@@ -83,7 +83,7 @@ public class CreateRoomScheduleShould
             timeRange: TimeRangeConstants.NineAmToElevenAm,
             date: DateTimeConstants.DateNow.AddDays(-1),
             today: DateTimeConstants.DateTimeNow,
-            id: RoomScheduleConstants.Id);
+            id: RoomScheduleConstants.Room1Id1Schedule);
         
         // assert
         action.ShouldThrow<Exception>();
