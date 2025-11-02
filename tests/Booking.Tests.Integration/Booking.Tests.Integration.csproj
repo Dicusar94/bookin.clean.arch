@@ -20,8 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Booking.Tests.Core\Booking.Tests.Core.csproj" />
     <ProjectReference Include="..\..\src\Booking.Web\Booking.Web.csproj" />
+    <ProjectReference Include="..\Booking.Tests.Core\Booking.Tests.Core.csproj" />
   </ItemGroup>
 
 </Project>

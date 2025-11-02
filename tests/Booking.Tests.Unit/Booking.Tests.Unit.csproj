@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Booking.Tests.Core\Booking.Tests.Core.csproj" />
     <ProjectReference Include="..\..\src\Booking.Domain\Booking.Domain.csproj" />
+    <ProjectReference Include="..\Booking.Tests.Core\Booking.Tests.Core.csproj" />
   </ItemGroup>
 
 </Project>
