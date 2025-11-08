@@ -1,12 +1,13 @@
-using BookingApp.RoomAggregate;
+using BookingApp.Features.Rooms.Rooms.Commons;
+using BookingApp.Features.Rooms.RoomSchedules.Commons;
 using BookingApp.Shared;
 using MediatR;
 
 namespace BookingApp.Features.Rooms.RoomSchedules.Commands.Reschedule;
 
-public class RescheduleCommandHandler(IUnitOfWork unitOfWork) : IRequestHandler<RescheduleCommand, RoomSchedule>
+public class RescheduleCommandHandler(IUnitOfWork unitOfWork) : IRequestHandler<RescheduleCommand, RoomScheduleDto>
 {
-    public async Task<RoomSchedule> Handle(RescheduleCommand request, CancellationToken ct)
+    public async Task<RoomScheduleDto> Handle(RescheduleCommand request, CancellationToken ct)
     {
         var room = await unitOfWork.Rooms.GetRoomById(request.Id, ct);
         
@@ -17,6 +18,6 @@ public class RescheduleCommandHandler(IUnitOfWork unitOfWork) : IRequestHandler<
         await unitOfWork.Rooms.UpdateRoom(room, ct);
         await unitOfWork.SaveChangesAsync(ct);
 
-        return roomSchedule;
+        return roomSchedule.Convert();
     }
 }

@@ -1,3 +1,5 @@
+using BookingApp.Features.Rooms.Rooms.Commons;
+using BookingApp.Features.Rooms.RoomSchedules.Commons;
 using BookingApp.RoomAggregate;
 using BookingApp.Shared;
 using MediatR;
@@ -5,9 +7,9 @@ using MediatR;
 namespace BookingApp.Features.Rooms.RoomSchedules.Commands.AddRecurring;
 
 public class AddRecurringRoomScheduleCommandHandler(IUnitOfWork unitOfWork)
-    : IRequestHandler<AddRecurringRoomScheduleCommand, RoomSchedule>
+    : IRequestHandler<AddRecurringRoomScheduleCommand, RoomScheduleDto>
 {
-    public async Task<RoomSchedule> Handle(
+    public async Task<RoomScheduleDto> Handle(
         AddRecurringRoomScheduleCommand request, 
         CancellationToken ct)
     {
@@ -23,6 +25,6 @@ public class AddRecurringRoomScheduleCommandHandler(IUnitOfWork unitOfWork)
         await unitOfWork.Rooms.UpdateRoom(room, ct);
         await unitOfWork.SaveChangesAsync(ct);
 
-        return roomSchedule;
+        return roomSchedule.Convert();
     }
 }

@@ -1,3 +1,4 @@
+using BookingApp.Features.Rooms.RoomSchedules.Commons;
 using BookingApp.RoomAggregate;
 using MediatR;
 
@@ -7,4 +8,4 @@ public record AddRecurringRoomScheduleCommand(
     Guid Id,
     DayOfWeek DayOfWeek,
     TimeOnly Start,
-    TimeOnly End) : IRequest<RoomSchedule>;
+    TimeOnly End) : IRequest<RoomScheduleDto>;

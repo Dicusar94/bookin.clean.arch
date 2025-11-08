@@ -18,18 +18,18 @@ public class RescheduleCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTime(a
         // arrange
         var start = new TimeOnly(12, 0);
         var end = new TimeOnly(15, 0);
-        var timeRange = TimeRange.Create(start, end);
         
         var command = new RescheduleCommand(
             Id: RoomConstants.Room2Id,
             ScheduleId: RoomScheduleConstants.Room2Id1Schedule,
-            Start: timeRange.Start,
-            End: timeRange.End);
+            Start: start,
+            End: end);
         
         // act
         var schedule = await sender.Send(command);
         
         // assert
-        schedule.TimeRange.ShouldBe(timeRange);
+        schedule.TimeRange.Start.ShouldBe(start);
+        schedule.TimeRange.End.ShouldBe(end);
     }
 }

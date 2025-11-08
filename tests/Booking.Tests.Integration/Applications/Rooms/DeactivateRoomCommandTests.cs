@@ -1,6 +1,5 @@
-using BookingApp.Features.Rooms.Rooms.Commands.Add;
 using BookingApp.Features.Rooms.Rooms.Commands.Deactivate;
-using BookingApp.RoomAggregate;
+using BookingApp.Features.Rooms.Rooms.Commons;
 using BookingApp.Utils;
 using BookingApp.Utils.TestContants.Rooms;
 using MediatR;
@@ -23,6 +22,6 @@ public class DeactivateRoomCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTi
         var room = await sender.Send(command);
         
         // assert
-        room.Status.ShouldBe(RoomStatus.Inactive);
+        room.Status.ShouldBe(RoomStatusDto.Inactive);
     }
 }

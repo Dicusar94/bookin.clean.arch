@@ -8,6 +8,5 @@
   <ItemGroup>
     <Folder Include="Features\Bookings\" />
     <Folder Include="Features\Rooms\RoomSchedules\Queries\" />
-    <Folder Include="Features\Rooms\Rooms\" />
   </ItemGroup>
 </Project>
