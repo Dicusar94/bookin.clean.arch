@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+
+          <!-- ✅ Only instrument domain code -->
+          <Include>
+            <ModulePath>.*[\\/]+Booking\.Domain\.dll$</ModulePath>
+          </Include>
+
+          <!-- ❌ Exclude everything else -->
+          <Exclude>
+            <ModulePath>.*[\\/]+Booking\.Application\.dll$</ModulePath>
+            <ModulePath>.*[\\/]+Booking\.Infrastructure\.dll$</ModulePath>
+            <ModulePath>.*[\\/]+Booking\.Web\.dll$</ModulePath>
+            <ModulePath>.*[\\/]+Booking\.Core\.dll$</ModulePath>
+            <ModulePath>.*[\\/]+Booking\.Tests.*\.dll$</ModulePath>
+          </Exclude>
+
+          <!-- Ignore compiler-generated & boilerplate code -->
+          <ExcludeByAttribute>
+            <Attribute>GeneratedCodeAttribute</Attribute>
+            <Attribute>CompilerGeneratedAttribute</Attribute>
+          </ExcludeByAttribute>
+
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

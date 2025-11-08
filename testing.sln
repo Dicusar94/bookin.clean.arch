@@ -40,7 +40,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "coverage", "coverage", "{606E253A-8BCD-42BF-AD0B-24D05E4B0EEC}"
 	ProjectSection(SolutionItems) = preProject
 		test.unit.coverage.sh = test.unit.coverage.sh
-		test.integration.coverage.sh = test.integration.coverage.sh
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Tests.Core", "tests\Booking.Tests.Core\Booking.Tests.Core.csproj", "{6ACB364B-EE56-44A8-8B13-91C4A132AB2D}"
