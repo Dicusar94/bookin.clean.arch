@@ -67,18 +67,16 @@ public class Room : AggregateRoot
         return schedule;
     }
 
-    public void Activate()
+    public void Activate(TimeProvider timeProvider)
     {
         Status = RoomStatus.Active;
+        AddDomainEvent(new RoomActivatedEvent(Id, timeProvider.GetUtcNow().DateTime));
     }
 
     public void Deactivate(TimeProvider timeProvider)
     {
         Status = RoomStatus.Inactive;
-        
-        AddDomainEvent(new RoomDeactivatedEvent(
-            Id: Id,
-            OnDateTime: timeProvider.GetUtcNow().DateTime));
+        AddDomainEvent(new RoomDeactivatedEvent(Id, timeProvider.GetUtcNow().DateTime));
     }
 
     public bool IsAvailableOn(DateOnly date, TimeRange requestedTime)

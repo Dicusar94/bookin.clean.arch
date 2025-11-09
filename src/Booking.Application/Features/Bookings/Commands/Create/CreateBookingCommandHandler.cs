@@ -4,7 +4,7 @@ using BookingApp.Features.Bookings.Commons;
 using BookingApp.Shared;
 using MediatR;
 
-namespace BookingApp.Features.Bookings.Commands;
+namespace BookingApp.Features.Bookings.Commands.Create;
 
 public class CreateBookingCommandHandler(
     TimeProvider timeProvider,

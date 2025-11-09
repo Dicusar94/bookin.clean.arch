@@ -1,7 +1,7 @@
 using BookingApp.Features.Bookings.Commons;
 using MediatR;
 
-namespace BookingApp.Features.Bookings.Commands;
+namespace BookingApp.Features.Bookings.Commands.Create;
 
 public record CreateBookingCommand(
     Guid RoomId,

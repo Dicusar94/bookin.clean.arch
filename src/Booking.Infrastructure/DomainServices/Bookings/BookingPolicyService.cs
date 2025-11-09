@@ -16,6 +16,11 @@ public class BookingPolicyService(
         
         var room = await roomRepository.GetRoomById(booking.RoomId, ct);
 
+        if (room.Status is not RoomStatus.Active)
+        {
+            throw new Exception("Room is not active at the moment");
+        }
+        
         if (!room.IsAvailableOn(booking.Date, booking.TimeRange))
         {
             var exception = new Exception("Room not available during the requested time");
