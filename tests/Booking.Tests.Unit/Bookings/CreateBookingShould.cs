@@ -29,6 +29,9 @@ public class CreateBookingShould
         booking.Date.ShouldBe(DateTimeConstants.DateNow);
         booking.TimeRange.ShouldBe(TimeRangeConstants.NineAmToElevenAm);
         booking.Id.ShouldBe(BookingConstants.Booking1Id);
+        booking.CreatedAt.ShouldBe(DateTimeConstants.DateTimeNow);
+        booking.ConfirmedAt.ShouldBeNull();
+        booking.CanceledAt.ShouldBeNull();
     }
     
     [Fact]

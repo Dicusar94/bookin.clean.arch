@@ -13,6 +13,9 @@ public class Booking : AggregateRoot
     public DateOnly Date  { get; private set; }
     public TimeRange TimeRange { get; private set; } = null!;
     public BookingStatus Status { get; private set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime? ConfirmedAt { get; set; }
+    public DateTime? CanceledAt { get; set; }
 
     public Booking(
         Guid roomId,
@@ -41,9 +44,34 @@ public class Booking : AggregateRoot
         Date = date;
         TimeRange = timeRange;
         Status = BookingStatus.Pending;
+        CreatedAt = timeProvider.GetUtcNow().DateTime;
         
         AddDomainEvent(new BookingCreatedEvent(Id));
         AddDomainEvent(new BookingPendingConfirmationEvent(Id, timeProvider.GetUtcNow()));
+    }
+
+    public void Confirm(TimeProvider timeProvider)
+    {
+        if (Status != BookingStatus.Pending)
+        {
+            throw new Exception("Only pending booking can be confirmed");
+        }
+
+        Status = BookingStatus.Confirmed;
+        ConfirmedAt = timeProvider.GetUtcNow().DateTime;
+        AddDomainEvent(new BookingConfirmedEvent(Id));
+    }
+
+    public void AutoCancel(TimeProvider timeProvider)
+    {
+        if (Status != BookingStatus.Pending)
+        {
+            throw new Exception("Only pending booking can be auto-canceled");
+        }
+        
+        Status = BookingStatus.Canceled;
+        CanceledAt = timeProvider.GetUtcNow().DateTime;
+        AddDomainEvent(new BookingConfirmedEvent(Id));
     }
     
     private Booking(){}
