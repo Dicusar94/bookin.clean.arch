@@ -69,12 +69,24 @@ public class Room : AggregateRoot
 
     public void Activate(TimeProvider timeProvider)
     {
+        Guard.Against.InvalidInput(
+            input:Status, 
+            parameterName: nameof(Status), 
+            predicate: status => status is RoomStatus.Inactive, 
+            message:"Room already active");
+        
         Status = RoomStatus.Active;
         AddDomainEvent(new RoomActivatedEvent(Id, timeProvider.GetUtcNow().DateTime));
     }
 
     public void Deactivate(TimeProvider timeProvider)
     {
+        Guard.Against.InvalidInput(
+            input:Status, 
+            parameterName: nameof(Status), 
+            predicate: status => status is RoomStatus.Active, 
+            message:"Room already inactive");
+        
         Status = RoomStatus.Inactive;
         AddDomainEvent(new RoomDeactivatedEvent(Id, timeProvider.GetUtcNow().DateTime));
     }
