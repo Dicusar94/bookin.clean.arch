@@ -6,7 +6,7 @@
     <PackageReference Include="MediatR" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Features\Bookings\" />
+    <Folder Include="Features\Bookings\Queries\" />
     <Folder Include="Features\Rooms\RoomSchedules\Queries\" />
   </ItemGroup>
 </Project>

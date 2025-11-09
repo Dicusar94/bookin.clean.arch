@@ -6,7 +6,7 @@ using BookingApp.Utils.TestContants.Schared;
 using BookingApp.Utils.TestContants.Users;
 using Shouldly;
 
-namespace BookingApp.DomainServices;
+namespace BookingApp.Domains;
 
 public class BookingPolicyServiceTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory), IClassFixture<ApiFactory> 
 {
