@@ -2,6 +2,7 @@ using BookingApp.RoomAggregate;
 using BookingApp.RoomAggregate.Events;
 using BookingApp.Utils;
 using BookingApp.Utils.TestContants.Schared;
+using Microsoft.Extensions.Time.Testing;
 using Shouldly;
 
 namespace BookingApp.Tests.Unit.Rooms;
@@ -13,6 +14,7 @@ public class ActivateRoomShould
     {
         // arrange
         var room = TestRoomFactory.CreateRoom();
+        room.AddSchedule(TestRoomFactory.CreateRecurringSchedule());
         
         // act
         room.Activate(DateTimeConstants.TimeProvider);
@@ -26,10 +28,41 @@ public class ActivateRoomShould
     {
         // arrange
         var room = TestRoomFactory.CreateRoom();
+        room.AddSchedule(TestRoomFactory.CreateRecurringSchedule());
         room.Activate(DateTimeConstants.TimeProvider);
         
         // act
-        var action = () => room.Activate(TimeProvider.System);
+        var action = () => room.Activate(DateTimeConstants.TimeProvider);
+        
+        // assert
+        action.ShouldThrow<Exception>();
+    }
+
+    [Fact]
+    public void Activate_when_has_no_schedule_should_fail()
+    {
+        // arrange
+        var room = TestRoomFactory.CreateRoom();
+        
+        // act
+        var action = () => room.Activate(DateTimeConstants.TimeProvider);
+        
+        // assert
+        action.ShouldThrow<Exception>();
+    }
+    
+    [Fact]
+    public void Activate_when_has_no_active_schedule_should_fail()
+    {
+        // arrange
+        var timeProvider = new FakeTimeProvider(DateTimeConstants.DateTimeOffsetNow);
+        var room = TestRoomFactory.CreateRoom();
+        room.AddSchedule(TestRoomFactory.CreateConcreteSchedule(date: DateTimeConstants.DateNow));
+        
+        timeProvider.Advance(TimeSpan.FromDays(1));
+        
+        // act
+        var action = () => room.Activate(timeProvider);
         
         // assert
         action.ShouldThrow<Exception>();
@@ -40,6 +73,7 @@ public class ActivateRoomShould
     {
         // arrange
         var room = TestRoomFactory.CreateRoom();
+        room.AddSchedule(TestRoomFactory.CreateRecurringSchedule());
         
         // act
         room.Activate(DateTimeConstants.TimeProvider);

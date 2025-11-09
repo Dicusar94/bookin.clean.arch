@@ -74,6 +74,16 @@ public class Room : AggregateRoot
             parameterName: nameof(Status), 
             predicate: status => status is RoomStatus.Inactive, 
             message:"Room already active");
+
+        if (!Schedules.Any())
+        {
+            throw new Exception("Room has not set any schedules");
+        }
+        
+        if (!Schedules.Any(x => x.IsActive(timeProvider)))
+        {
+            throw new Exception("Room has no active schedule");
+        }
         
         Status = RoomStatus.Active;
         AddDomainEvent(new RoomActivatedEvent(Id, timeProvider.GetUtcNow().DateTime));

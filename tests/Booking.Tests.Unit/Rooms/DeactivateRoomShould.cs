@@ -14,6 +14,7 @@ public class DeactivateRoomShould
     {
         // arrange
         var room = TestRoomFactory.CreateRoom();
+        room.AddSchedule(TestRoomFactory.CreateRecurringSchedule());
         room.Activate(DateTimeConstants.TimeProvider);
         
         // act
@@ -41,6 +42,7 @@ public class DeactivateRoomShould
     {
         // arrange
         var room = TestRoomFactory.CreateRoom();
+        room.AddSchedule(TestRoomFactory.CreateRecurringSchedule());
         room.Activate(DateTimeConstants.TimeProvider);
         
         // act

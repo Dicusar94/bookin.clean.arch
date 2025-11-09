@@ -66,6 +66,12 @@ public class RoomSchedule : Entity
         return TimeRange.CoversWith(requestedTime);
     }
 
+    public bool IsActive(TimeProvider timeProvider)
+    {
+        if (IsRecurring) return true;
+        return timeProvider.GetUtcNow().DateTime < new DateTime(Date!.Value, TimeRange.End);
+    }
+
     public RoomSchedule WithTimeRange(TimeRange newTimeRange)
     {
         return new RoomSchedule(
