@@ -1,6 +1,7 @@
 using BookingApp.BookingAggregate;
 using BookingApp.RoomAggregate;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookingApp.Persistence;
 
@@ -15,6 +16,16 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
         builder.HasDefaultSchema("room-booking");
         builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        
+        foreach (var property in builder.Model
+                     .GetEntityTypes()
+                     .SelectMany(t => t.GetProperties())
+                     .Where(p => p.ClrType == typeof(DateTime)))
+        {
+            property.SetValueConverter(new ValueConverter<DateTime, DateTime>(
+                v => v.Kind == DateTimeKind.Utc ? v : DateTime.SpecifyKind(v, DateTimeKind.Utc),
+                v => DateTime.SpecifyKind(v, DateTimeKind.Utc)));
+        }
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
