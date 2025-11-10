@@ -33,17 +33,17 @@ public static class TestSeedingExtensions
             name: "Room1Recurring",
             capacity: 2);
             
-            room1.Activate(DateTimeConstants.TimeProvider);
+        room1.AddSchedule(recurringSchedule);
+        room1.Activate(DateTimeConstants.TimeProvider);
         
         var room2 = TestRoomFactory.CreateRoom(
             id: RoomConstants.Room2Id,
             name: "Room2Concrete",
             capacity: 2);
         
-            room2.Activate(DateTimeConstants.TimeProvider);
-        
-        room1.AddSchedule(recurringSchedule);
         room2.AddSchedule(concreteSchedule);
+        room2.Activate(DateTimeConstants.TimeProvider);
+        
 
         await dbContext.Rooms.AddRangeAsync([room1, room2], ct);
     }
