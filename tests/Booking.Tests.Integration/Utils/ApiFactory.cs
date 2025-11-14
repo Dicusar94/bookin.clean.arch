@@ -3,6 +3,7 @@ using BookingApp.Messaging.Subscriber;
 using BookingApp.Persistence;
 using BookingApp.Properties;
 using BookingApp.Utils.DbSeeders;
+using BookingApp.Utils.Stubs;
 using BookingApp.Utils.TestContants.Schared;
 using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Hosting;
@@ -43,7 +44,8 @@ public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
         services.RemoveAll<ModelFactory>();
         services.RemoveAll<IMessageProducer>();
         services.RemoveAll<RabbitMqReceiver>();
-        services.RemoveAll<IListener>();
+
+        services.AddSingleton<IMessageProducer, InMemorySyncMessageProducer>();
         services.RemoveHostedService<WorkerService>();
     }
 

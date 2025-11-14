@@ -8,14 +8,17 @@ public class Booking : AggregateRoot
 {
     private static readonly TimeSpan minDuration = TimeSpan.FromMinutes(30);
     private static readonly TimeSpan maxDuration = TimeSpan.FromHours(8);
+    
+    public static TimeSpan MaxPendingStatusDuration = TimeSpan.FromMinutes(15);
+    
     public Guid RoomId { get; private set; }
     public Guid UserId { get; private set; }
     public DateOnly Date  { get; private set; }
     public TimeRange TimeRange { get; private set; } = null!;
     public BookingStatus Status { get; private set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime? ConfirmedAt { get; set; }
-    public DateTime? CanceledAt { get; set; }
+    public DateTime CreatedAt { get; private set; }
+    public DateTime? ConfirmedAt { get; private set; }
+    public DateTime? CanceledAt { get; private set; }
 
     public Booking(
         Guid roomId,
@@ -68,10 +71,29 @@ public class Booking : AggregateRoot
         {
             throw new Exception("Only pending booking can be auto-canceled");
         }
+
+        var durationInPending = timeProvider.GetUtcNow().DateTime - CreatedAt;
+        
+        if (durationInPending < MaxPendingStatusDuration)
+        {
+            throw new Exception("Max duration in pending state didn't exceed");
+        }
         
         Status = BookingStatus.Canceled;
         CanceledAt = timeProvider.GetUtcNow().DateTime;
-        AddDomainEvent(new BookingConfirmedEvent(Id));
+        AddDomainEvent(new BookingAutoCanceledEvent(Id));
+    }
+
+    public void Cancel(TimeProvider timeProvider)
+    {
+        if (Status == BookingStatus.Canceled)
+        {
+            throw new Exception("Booking already canceled");
+        }
+
+        Status = BookingStatus.Canceled;
+        CanceledAt = timeProvider.GetUtcNow().DateTime;
+        AddDomainEvent(new BookingCanceledEvent(Id));
     }
     
     private Booking(){}

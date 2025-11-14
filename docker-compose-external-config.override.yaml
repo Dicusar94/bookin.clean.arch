@@ -1,7 +1,0 @@
-version: '3'
-
-services:
-  spring-cloud-config-server:
-    environment:
-      SPRING_CLOUD_CONFIG_SERVER_GIT_USERNAME: "Dicusar94"
-      SPRING_CLOUD_CONFIG_SERVER_GIT_PASSWORD: "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"

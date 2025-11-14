@@ -9,3 +9,7 @@ services:
       SPRING_CLOUD_CONFIG_SERVER_GIT_SEARCH_PATHS: "clean-arch"
     ports:
       - "8888:8888"
+    deploy:
+      resources:
+        limits:
+          memory: 1g

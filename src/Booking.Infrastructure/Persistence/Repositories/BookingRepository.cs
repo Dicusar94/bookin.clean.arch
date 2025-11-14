@@ -54,6 +54,7 @@ public class BookingRepository(ApplicationDbContext context) : IBookingRepositor
     {
         return await context.Bookings
             .Where(x => 
+                x.Status != BookingStatus.Canceled &&
                 x.RoomId == roomId &&
                 x.Date == date &&
                 x.TimeRange.Start < timeRange.End &&
@@ -69,6 +70,7 @@ public class BookingRepository(ApplicationDbContext context) : IBookingRepositor
     {
         return await context.Bookings
             .AnyAsync(x =>
+                x.Status != BookingStatus.Canceled &&
                 x.UserId == userId &&
                 x.Date == date &&
                 x.TimeRange.Start < timeRange.End &&

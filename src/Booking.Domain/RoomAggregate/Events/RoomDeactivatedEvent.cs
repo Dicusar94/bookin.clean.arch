@@ -4,5 +4,5 @@ namespace BookingApp.RoomAggregate.Events;
 
 public record RoomDeactivatedEvent(Guid Id, DateTime OnDateTime) : IDomainEvent
 {
-    public string RoutingKey => string.Empty;
+    public string RoutingKey => GetType().FullName!;
 }

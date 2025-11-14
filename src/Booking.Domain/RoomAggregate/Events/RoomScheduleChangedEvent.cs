@@ -4,5 +4,5 @@ namespace BookingApp.RoomAggregate.Events;
 
 public record RoomScheduleChangedEvent(Guid Id, Guid RoomScheduleId) : IDomainEvent
 {
-    public string RoutingKey => string.Empty;
+    public string RoutingKey => GetType().FullName!;
 }
