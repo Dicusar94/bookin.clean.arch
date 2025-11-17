@@ -9,7 +9,7 @@ namespace BookingApp.Persistence.Repositories;
 
 public class BookingRepository(ApplicationDbContext context) : IBookingRepository
 {
-    public async Task<Booking> AddBooking(Booking booking)
+    public async Task<BookingAggregate.Booking> AddBooking(BookingAggregate.Booking booking)
     {
         _ = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetBooking(booking);
@@ -19,7 +19,7 @@ public class BookingRepository(ApplicationDbContext context) : IBookingRepositor
         return booking;
     }
 
-    public Task<Booking> UpdateBooking(Booking booking)
+    public Task<BookingAggregate.Booking> UpdateBooking(BookingAggregate.Booking booking)
     {
         _ = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetBooking(booking);
@@ -29,7 +29,7 @@ public class BookingRepository(ApplicationDbContext context) : IBookingRepositor
         return Task.FromResult(booking);
     }
 
-    public async Task<Booking> GetBookingById(Guid id)
+    public async Task<BookingAggregate.Booking> GetBookingById(Guid id)
     {
         var dbActivity = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetBookingId(id);
@@ -46,7 +46,7 @@ public class BookingRepository(ApplicationDbContext context) : IBookingRepositor
         return booking;
     }
 
-    public async Task<IReadOnlyList<Booking>> GetOverlappingBookingsAsync(
+    public async Task<IReadOnlyList<BookingAggregate.Booking>> GetOverlappingBookingsAsync(
         Guid roomId, 
         DateOnly date, 
         TimeRange timeRange, 

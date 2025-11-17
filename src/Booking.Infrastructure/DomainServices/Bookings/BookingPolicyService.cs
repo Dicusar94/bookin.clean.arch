@@ -9,7 +9,7 @@ public class BookingPolicyService(
     IRoomRepository roomRepository, 
     IBookingRepository bookingRepository) : IBookingPolicyService
 {
-    public async Task EnsureBookingCanBeCreatedAsync(Booking booking, CancellationToken ct = default)
+    public async Task EnsureBookingCanBeCreatedAsync(BookingAggregate.Booking booking, CancellationToken ct = default)
     {
         var activity = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetBooking(booking);

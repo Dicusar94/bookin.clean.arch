@@ -6,6 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TickerQ.Dashboard.DependencyInjection;
+using TickerQ.DependencyInjection;
+using TickerQ.EntityFrameworkCore.DependencyInjection;
 
 namespace BookingApp.Persistence;
 
@@ -17,6 +20,7 @@ public static class PersistenceBuilderExtensions
             opt.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
         builder.AddRepositories();
+        builder.AddBackgroundJobs();
 
         return builder;
     }
@@ -26,6 +30,26 @@ public static class PersistenceBuilderExtensions
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
         builder.Services.AddScoped<IRoomRepository, RoomRepository>();
         builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+
+        return builder;
+    }
+
+    private static IHostApplicationBuilder AddBackgroundJobs(this IHostApplicationBuilder builder)
+    {
+        builder.Services.AddTickerQ(options =>
+        {
+            options.SetMaxConcurrency(10);
+            options.AddOperationalStore<ApplicationDbContext>(efOptions =>
+            {
+                efOptions.UseModelCustomizerForMigrations();
+            });
+
+            options.AddDashboard(dashboardOptions =>
+            {
+                dashboardOptions.BasePath = "/jobs";
+                dashboardOptions.EnableBasicAuth = false; //todo: after user auth
+            });
+        });
 
         return builder;
     }

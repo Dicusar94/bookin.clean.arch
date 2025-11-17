@@ -13,8 +13,7 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <PackageReference Include="RabbitMQ.Client" />
     <PackageReference Include="Steeltoe.Configuration.ConfigServer" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Persistence\Migrations\" />
+    <PackageReference Include="TickerQ.Dashboard" />
+    <PackageReference Include="TickerQ.EntityFrameworkCore" />
   </ItemGroup>
 </Project>

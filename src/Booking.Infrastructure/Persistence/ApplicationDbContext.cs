@@ -2,13 +2,14 @@ using BookingApp.BookingAggregate;
 using BookingApp.RoomAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using TickerQ.EntityFrameworkCore.Configurations;
 
 namespace BookingApp.Persistence;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
 {
     public DbSet<Room> Rooms { get; set; }
-    public DbSet<Booking> Bookings { get; set; }
+    public DbSet<BookingAggregate.Booking> Bookings { get; set; }
     
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -16,7 +17,15 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
         builder.HasDefaultSchema("room-booking");
         builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
+        builder.ApplyConfiguration(new TimeTickerConfigurations());
+        builder.ApplyConfiguration(new CronTickerConfigurations());
+        builder.ApplyConfiguration(new CronTickerOccurrenceConfigurations());
         
+        ConfigureUtcDateTimeConverter(builder);
+    }
+
+    private static void ConfigureUtcDateTimeConverter(ModelBuilder builder)
+    {
         foreach (var property in builder.Model
                      .GetEntityTypes()
                      .SelectMany(t => t.GetProperties())
@@ -31,10 +40,5 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
         base.OnConfiguring(builder);
-    }
-
-    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
-    {
-        return base.SaveChangesAsync(cancellationToken);
     }
 }

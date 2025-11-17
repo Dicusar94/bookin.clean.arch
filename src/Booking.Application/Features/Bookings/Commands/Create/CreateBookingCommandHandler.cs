@@ -14,7 +14,7 @@ public class CreateBookingCommandHandler(
 {
     public async Task<BookingDto> Handle(CreateBookingCommand request, CancellationToken ct)
     {
-        var booking = new Booking(
+        var booking = new BookingAggregate.Booking(
             roomId: request.RoomId,
             userId: request.UserId,
             date: request.Date,

@@ -5,7 +5,7 @@ namespace BookingApp.Telemetry;
 
 public static class TelemetryExtensions
 {
-    public static Activity? SetBooking(this Activity? activity, Booking booking)
+    public static Activity? SetBooking(this Activity? activity, BookingAggregate.Booking booking)
     {
         return activity?
             .SetRoomId(booking.RoomId)

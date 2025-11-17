@@ -16,7 +16,7 @@ public static class Mappings
         };
     }
 
-    public static BookingDto Convert(this Booking entity)
+    public static BookingDto Convert(this BookingAggregate.Booking entity)
     {
         return new BookingDto
         {

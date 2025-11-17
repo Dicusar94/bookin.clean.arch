@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BookingApp.Persistence.Configurations;
 
-public class BookingConfigurations : IEntityTypeConfiguration<Booking>
+public class BookingConfigurations : IEntityTypeConfiguration<BookingAggregate.Booking>
 {
-    public void Configure(EntityTypeBuilder<Booking> builder)
+    public void Configure(EntityTypeBuilder<BookingAggregate.Booking> builder)
     {
         builder.ToTable("Bookings");
         
