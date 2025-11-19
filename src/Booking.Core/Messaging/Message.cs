@@ -21,4 +21,8 @@ public record Message
         Body = serializedObject;
         Id = Guid.NewGuid().ToString();
     }
+
+    public T GetBody<T>() 
+        => JsonSerializer.Deserialize<T>(Body) 
+           ?? throw new ApplicationException("Body deserialization failed");
 }

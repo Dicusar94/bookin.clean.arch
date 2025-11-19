@@ -1,4 +1,3 @@
-using BookingApp.BookingAggregate;
 using BookingApp.RoomAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;

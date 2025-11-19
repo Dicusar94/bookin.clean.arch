@@ -39,15 +39,16 @@ public static class PersistenceBuilderExtensions
         builder.Services.AddTickerQ(options =>
         {
             options.SetMaxConcurrency(10);
+            
             options.AddOperationalStore<ApplicationDbContext>(efOptions =>
             {
                 efOptions.UseModelCustomizerForMigrations();
             });
 
-            options.AddDashboard(dashboardOptions =>
+            options.AddDashboard(uiopt =>
             {
-                dashboardOptions.BasePath = "/jobs";
-                dashboardOptions.EnableBasicAuth = false; //todo: after user auth
+                uiopt.BasePath = "/tickerq-dashboard";
+                uiopt.EnableBasicAuth = false;
             });
         });
 

@@ -1,5 +1,6 @@
 using BookingApp;
 using BookingApp.Infrastructure.Endpoints;
+using TickerQ.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -18,6 +19,7 @@ var app = builder.Build();
         options.RoutePrefix = "swagger"; // Access at /swagger
     });
     
+    app.UseTickerQ();
     app.MapEndpointsFrom<Program>();
     app.Run();
 }
