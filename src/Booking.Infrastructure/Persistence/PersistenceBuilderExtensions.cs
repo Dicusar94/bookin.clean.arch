@@ -1,7 +1,9 @@
 using BookingApp.BookingAggregate;
+using BookingApp.Persistence.Interceptors;
 using BookingApp.Persistence.Repositories;
 using BookingApp.RoomAggregate;
 using BookingApp.Shared;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +18,8 @@ public static class PersistenceBuilderExtensions
 {
     internal static IHostApplicationBuilder AddPersistence(this IHostApplicationBuilder builder)
     {
+        builder.Services.AddSingleton<PublishDomainEventsInterceptor>();
+        
         builder.Services.AddDbContext<ApplicationDbContext>(opt => 
             opt.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
@@ -53,5 +57,13 @@ public static class PersistenceBuilderExtensions
         });
 
         return builder;
+    }
+
+    public static IApplicationBuilder ApplyMigrations(this IApplicationBuilder app)
+    {
+        using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
+        using var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
+        context?.Database.Migrate();
+        return app;
     }
 }
