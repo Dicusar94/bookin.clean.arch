@@ -1,5 +1,6 @@
 using BookingApp;
 using BookingApp.Infrastructure.Endpoints;
+using BookingApp.Persistence;
 using TickerQ.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 {
     app.UseHttpsRedirection();
+    
+    if (app.Environment.IsDevelopment())
+    {
+        app.ApplyMigrations();
+    }
+    
     app.UseMiddlewares();
     
     app.UseSwagger(); // This creates /swagger/v1/swagger.json

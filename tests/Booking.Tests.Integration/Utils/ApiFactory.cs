@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Testcontainers.PostgreSql;
+using TickerQ.Utilities.Interfaces.Managers;
 
 namespace BookingApp.Utils;
 
@@ -25,9 +26,11 @@ public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
     {
         builder.ConfigureServices(services =>
         {
-            // Overwrite the DBContext setup
+            services.RemoveAll<IHostedService>();
+            
             ConfigureDatabaseContext(services);
             RemoveRabbitMq(services);
+            RemoveTickerQ(services);
             StubTimeprovider(services);
         });
     }
@@ -46,7 +49,12 @@ public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
         services.RemoveAll<RabbitMqReceiver>();
 
         services.AddSingleton<IMessageProducer, InMemorySyncMessageProducer>();
-        services.RemoveHostedService<WorkerService>();
+    }
+
+    private static void RemoveTickerQ(IServiceCollection services)
+    {
+        services.RemoveAll(typeof(ITimeTickerManager<>));
+        services.AddSingleton(typeof(ITimeTickerManager<>), typeof(FakeTickerManager<>));
     }
 
     public T GetService<T>() where T : notnull

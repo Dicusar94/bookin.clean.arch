@@ -31,5 +31,4 @@ public class CreateBookingCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTim
         // assert
         booking.ShouldNotBeNull();
     }
-
 }
