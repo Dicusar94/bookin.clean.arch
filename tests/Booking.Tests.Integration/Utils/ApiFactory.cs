@@ -1,3 +1,4 @@
+using BookingApp.Abstractions;
 using BookingApp.Messaging;
 using BookingApp.Messaging.Subscriber;
 using BookingApp.Persistence;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Testcontainers.PostgreSql;
+using TickerQ.Utilities.Base;
 using TickerQ.Utilities.Interfaces.Managers;
 using TickerQ.Utilities.Models.Ticker;
 
@@ -57,6 +59,12 @@ public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
         services.RemoveAll(typeof(ITimeTickerManager<>));
         services.RemoveAll<IHostedService>();
         services.AddSingleton(typeof(ITimeTickerManager<>), typeof(FakeTickerManager<>));
+        
+        services.Scan(scan => scan
+            .FromAssembliesOf(typeof(ITickerFunctionMarker)) // your App layer
+            .AddClasses(c => c.AssignableTo<ITickerFunctionMarker>())
+            .AsSelf()
+            .WithTransientLifetime());
     }
 
     public T GetService<T>() where T : notnull

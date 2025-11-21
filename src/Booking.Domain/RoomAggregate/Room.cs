@@ -86,7 +86,7 @@ public class Room : AggregateRoot
         }
         
         Status = RoomStatus.Active;
-        AddDomainEvent(new RoomActivatedEvent(Id, timeProvider.GetUtcNow().DateTime));
+        AddDomainEvent(new RoomActivatedEvent(Id, timeProvider.GetUtcNow().UtcDateTime));
     }
 
     public void Deactivate(TimeProvider timeProvider)
@@ -98,7 +98,7 @@ public class Room : AggregateRoot
             message:"Room already inactive");
         
         Status = RoomStatus.Inactive;
-        AddDomainEvent(new RoomDeactivatedEvent(Id, timeProvider.GetUtcNow().DateTime));
+        AddDomainEvent(new RoomDeactivatedEvent(Id, timeProvider.GetUtcNow().UtcDateTime));
     }
 
     public bool IsAvailableOn(DateOnly date, TimeRange requestedTime)

@@ -20,6 +20,7 @@ public static class Mappings
     {
         return new BookingDto
         {
+            Id = entity.Id,
             RoomId = entity.RoomId,
             UserId = entity.UserId,
             Date = entity.Date,

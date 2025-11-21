@@ -69,7 +69,7 @@ public class RoomSchedule : Entity
     public bool IsActive(TimeProvider timeProvider)
     {
         if (IsRecurring) return true;
-        return timeProvider.GetUtcNow().DateTime < new DateTime(Date!.Value, TimeRange.End);
+        return timeProvider.GetUtcNow().UtcDateTime < new DateTime(Date!.Value, TimeRange.End);
     }
 
     public RoomSchedule WithTimeRange(TimeRange newTimeRange)

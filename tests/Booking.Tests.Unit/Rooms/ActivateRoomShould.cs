@@ -83,6 +83,6 @@ public class ActivateRoomShould
 
         var roomDeactivatedEvent = room.DomainEvents.OfType<RoomActivatedEvent>().Single();
         roomDeactivatedEvent.Id.ShouldBe(room.Id);
-        roomDeactivatedEvent.OnDateTime.ShouldBe(DateTimeConstants.TimeProvider.GetUtcNow().DateTime);
+        roomDeactivatedEvent.OnDateTime.ShouldBe(DateTimeConstants.TimeProvider.GetUtcNow().UtcDateTime);
     }
 }

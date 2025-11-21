@@ -47,7 +47,7 @@ public class Booking : AggregateRoot
         Date = date;
         TimeRange = timeRange;
         Status = BookingStatus.Pending;
-        CreatedAt = timeProvider.GetUtcNow().DateTime;
+        CreatedAt = timeProvider.GetUtcNow().UtcDateTime;
         
         AddDomainEvent(new BookingCreatedEvent(Id));
         AddDomainEvent(new BookingPendingConfirmationEvent(Id, timeProvider.GetUtcNow()));
@@ -61,7 +61,7 @@ public class Booking : AggregateRoot
         }
 
         Status = BookingStatus.Confirmed;
-        ConfirmedAt = timeProvider.GetUtcNow().DateTime;
+        ConfirmedAt = timeProvider.GetUtcNow().UtcDateTime;
         AddDomainEvent(new BookingConfirmedEvent(Id));
     }
 
@@ -72,7 +72,7 @@ public class Booking : AggregateRoot
             throw new Exception("Only pending booking can be auto-canceled");
         }
 
-        var durationInPending = timeProvider.GetUtcNow().DateTime - CreatedAt;
+        var durationInPending = timeProvider.GetUtcNow().UtcDateTime - CreatedAt;
         
         if (durationInPending < MaxPendingStatusDuration)
         {
@@ -80,7 +80,7 @@ public class Booking : AggregateRoot
         }
         
         Status = BookingStatus.Canceled;
-        CanceledAt = timeProvider.GetUtcNow().DateTime;
+        CanceledAt = timeProvider.GetUtcNow().UtcDateTime;
         AddDomainEvent(new BookingAutoCanceledEvent(Id));
     }
 
@@ -92,7 +92,7 @@ public class Booking : AggregateRoot
         }
 
         Status = BookingStatus.Canceled;
-        CanceledAt = timeProvider.GetUtcNow().DateTime;
+        CanceledAt = timeProvider.GetUtcNow().UtcDateTime;
         AddDomainEvent(new BookingCanceledEvent(Id));
     }
     

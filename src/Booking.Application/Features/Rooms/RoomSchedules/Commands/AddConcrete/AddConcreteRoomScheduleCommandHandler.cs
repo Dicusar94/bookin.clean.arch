@@ -19,7 +19,7 @@ public class AddConcreteRoomScheduleCommandHandler(
             roomId: room.Id,
             date: request.Date,
             timeRange: TimeRange.Create(request.Start, request.End),
-            today: timeProvider.GetUtcNow().DateTime);
+            today: timeProvider.GetUtcNow().UtcDateTime);
         
         room.AddSchedule(roomSchedule);
 

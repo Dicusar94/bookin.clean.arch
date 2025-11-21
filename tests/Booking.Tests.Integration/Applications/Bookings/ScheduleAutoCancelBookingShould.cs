@@ -1,16 +1,13 @@
 using BookingApp.Features.Bookings.BackgroundJobs.AutoCancels;
 using BookingApp.Features.Bookings.Commands.Create;
-using BookingApp.Features.Rooms.Rooms.Commands.Add;
-using BookingApp.Features.Rooms.RoomSchedules.Commands.AddRecurring;
 using BookingApp.Utils;
 using BookingApp.Utils.TestContants.Rooms;
 using BookingApp.Utils.TestContants.Schared;
 using BookingApp.Utils.TestContants.Users;
 using MediatR;
 using Shouldly;
-using TickerQ.Utilities.Interfaces.Managers;
 
-namespace BookingApp.Infrastructures;
+namespace BookingApp.Applications.Bookings;
 
 public class ScheduleAutoCancelBookingShould(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory), IClassFixture<ApiFactory>
 {

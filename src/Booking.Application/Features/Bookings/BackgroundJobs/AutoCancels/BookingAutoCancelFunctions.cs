@@ -1,10 +1,11 @@
+using BookingApp.Abstractions;
 using BookingApp.Shared;
 using TickerQ.Utilities.Base;
 using TickerQ.Utilities.Models;
 
 namespace BookingApp.Features.Bookings.BackgroundJobs.AutoCancels;
 
-public class BookingAutoCancelFunctions(IUnitOfWork unitOfWork, TimeProvider timeProvider)
+public class BookingAutoCancelFunctions(IUnitOfWork unitOfWork, TimeProvider timeProvider) : ITickerFunctionMarker
 {
     [TickerFunction(functionName: nameof(BookingAutoCancelTicker))]
     public async Task Execute(TickerFunctionContext<Guid> context, CancellationToken ct)
