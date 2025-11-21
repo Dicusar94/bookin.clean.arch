@@ -1,3 +1,4 @@
+using BookingApp.Features.Bookings.Events.Handlers;
 using BookingApp.Messaging.Producer;
 using BookingApp.Messaging.Subscriber;
 using Microsoft.Extensions.Configuration;
@@ -37,6 +38,7 @@ public static class RabbitMqBuilderExtensions
         
         //todo: register event listeners here
         builder.Services.AddSingleton<IListener, TestListener>();
+        builder.Services.AddSingleton<IListener, ScheduleBookingAutoCancelEventHandler>();
 
         builder.Services.AddHostedService<WorkerService>();
         

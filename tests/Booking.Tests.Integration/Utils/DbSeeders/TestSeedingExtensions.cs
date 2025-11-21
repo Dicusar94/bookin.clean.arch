@@ -21,7 +21,8 @@ public static class TestSeedingExtensions
         var recurringSchedule = TestRoomFactory.CreateRecurringSchedule(
             roomId: RoomConstants.Room1Id,
             timeRange: TimeRangeConstants.EightAmToFivePm,
-            id: RoomScheduleConstants.Room1Id1Schedule);
+            id: RoomScheduleConstants.Room1Id1Schedule,
+            dayOfWeek: DateTimeConstants.DayOfWeek);
 
         var concreteSchedule = TestRoomFactory.CreateConcreteSchedule(
             roomId: RoomConstants.Room2Id,

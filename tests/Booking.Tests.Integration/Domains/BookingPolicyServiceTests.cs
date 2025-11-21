@@ -20,7 +20,7 @@ public class BookingPolicyServiceTests(ApiFactory apiFactory) : BaseAsyncLifeTim
         var booking = TestBookingFactory.Create(
             roomId: RoomConstants.Room1Id,
             userId: UserConstants.User2Id,
-            date: DateTimeConstants.DateNow.AddDays(1),
+            date: DateTimeConstants.DateNow,
             timeRange: TimeRangeConstants.FourAmToFivePm,
             timeProvider: DateTimeConstants.TimeProvider);
         

@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Testcontainers.PostgreSql;
 using TickerQ.Utilities.Interfaces.Managers;
+using TickerQ.Utilities.Models.Ticker;
 
 namespace BookingApp.Utils;
 
@@ -54,6 +55,7 @@ public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
     private static void RemoveTickerQ(IServiceCollection services)
     {
         services.RemoveAll(typeof(ITimeTickerManager<>));
+        services.RemoveAll<IHostedService>();
         services.AddSingleton(typeof(ITimeTickerManager<>), typeof(FakeTickerManager<>));
     }
 
@@ -61,6 +63,13 @@ public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
     {
         var scope = Services.CreateScope();
         return scope.ServiceProvider.GetRequiredService<T>();
+    }
+    
+    public FakeTickerManager<T> GetTickerService<T>() where T : TimeTicker
+    {
+        var result = GetService<ITimeTickerManager<T>>() as FakeTickerManager<T>;
+        result?.Clear();
+        return result!;
     }
 
     private void ConfigureDatabaseContext(IServiceCollection services)

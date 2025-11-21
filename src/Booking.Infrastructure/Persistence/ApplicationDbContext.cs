@@ -1,11 +1,15 @@
+using BookingApp.Persistence.Interceptors;
 using BookingApp.RoomAggregate;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TickerQ.EntityFrameworkCore.Configurations;
 
 namespace BookingApp.Persistence;
 
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
+public class ApplicationDbContext(
+    DbContextOptions<ApplicationDbContext> options, 
+    PublishDomainEventsInterceptor? publishDomainEventsInterceptor) : DbContext(options)
 {
     public DbSet<Room> Rooms { get; set; }
     public DbSet<BookingAggregate.Booking> Bookings { get; set; }
@@ -38,6 +42,15 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
+        builder.TryAddInterceptors(publishDomainEventsInterceptor);
         base.OnConfiguring(builder);
+    }
+}
+
+file static class Extensions
+{
+    public static DbContextOptionsBuilder TryAddInterceptors(this DbContextOptionsBuilder builder, IInterceptor? interceptor)
+    {
+        return interceptor is null ? builder : builder.AddInterceptors(interceptor);
     }
 }

@@ -1,5 +1,4 @@
 using BookingApp.Shared;
-using Microsoft.Extensions.Logging;
 using TickerQ.Utilities.Base;
 using TickerQ.Utilities.Models;
 

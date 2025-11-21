@@ -8,6 +8,12 @@ namespace BookingApp.Utils.Stubs;
 public class FakeTickerManager<TTicker> : ITimeTickerManager<TTicker> where TTicker : TimeTicker
 {
     public readonly List<TTicker> AddedTickers = [];
+
+    public FakeTickerManager<TTicker> Clear()
+    {
+        AddedTickers.Clear();
+        return this;
+    }
     
     public Task<TickerResult<TTicker>> AddAsync(TTicker entity, CancellationToken cancellationToken = new())
     {
