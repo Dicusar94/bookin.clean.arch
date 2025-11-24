@@ -5,7 +5,6 @@ public abstract class BaseAsyncLifeTime(ApiFactory apiFactory) : IAsyncLifetime
     protected virtual Func<Task> _initDatabase { get; } = apiFactory.TestDatabaseReset.InitializeAsync;
     protected virtual Func<Task> _resetDatabase { get; } = apiFactory.TestDatabaseReset.ResetAsync;
     protected virtual Func<Task> _seedDatabase { get; } = apiFactory.SeedAsync;
-    protected virtual Action _resetTimeProvider { get; } = apiFactory.ResetTimeProvider;
     
     public Task InitializeAsync()
     {
@@ -14,7 +13,6 @@ public abstract class BaseAsyncLifeTime(ApiFactory apiFactory) : IAsyncLifetime
 
     public async Task DisposeAsync()
     {
-        _resetTimeProvider.Invoke();
         await _resetDatabase();
         await _seedDatabase();
     }

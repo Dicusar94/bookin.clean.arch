@@ -114,17 +114,6 @@ public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
         TestDatabaseReset = new TestDatabaseReset(_postgreSqlContainer.GetConnectionString());
     }
 
-    public void ResetTimeProvider()
-    {
-        var timeProvider = GetService<TimeProvider>();
-        var provider = timeProvider as FakeTimeProvider;
-        
-        if (provider is not null)
-        {
-            provider = new FakeTimeProvider(DateTimeConstants.DateTimeOffsetNow);
-        }
-    }
-
     public Task SeedAsync()
     {
         var dbContext = GetService<ApplicationDbContext>();
