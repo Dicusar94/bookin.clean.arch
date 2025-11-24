@@ -2,7 +2,7 @@ using BookingApp.Entities;
 
 namespace BookingApp.BookingAggregate.Events;
 
-public record BookingCanceledEvent(Guid Id) : IDomainEvent
+public record BookingCanceledConfirmedEvent(Guid Id) : IDomainEvent
 {
     public string RoutingKey => GetType().FullName!;
 }

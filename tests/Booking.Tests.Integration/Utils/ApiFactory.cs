@@ -13,8 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Time.Testing;
 using Testcontainers.PostgreSql;
-using TickerQ.Utilities.Base;
 using TickerQ.Utilities.Interfaces.Managers;
 using TickerQ.Utilities.Models.Ticker;
 
@@ -112,6 +112,17 @@ public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
         await dbContext.SeedAsync();
 
         TestDatabaseReset = new TestDatabaseReset(_postgreSqlContainer.GetConnectionString());
+    }
+
+    public void ResetTimeProvider()
+    {
+        var timeProvider = GetService<TimeProvider>();
+        var provider = timeProvider as FakeTimeProvider;
+        
+        if (provider is not null)
+        {
+            provider = new FakeTimeProvider(DateTimeConstants.DateTimeOffsetNow);
+        }
     }
 
     public Task SeedAsync()

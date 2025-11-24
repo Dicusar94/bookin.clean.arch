@@ -9,7 +9,7 @@ using Shouldly;
 
 namespace BookingApp.Applications.Bookings;
 
-public class ScheduleAutoCancelBookingShould(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory), IClassFixture<ApiFactory>
+public class ScheduleAutoCancelBookingTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory), IClassFixture<ApiFactory>
 {
     private readonly ApiFactory _apiFactory = apiFactory;
 

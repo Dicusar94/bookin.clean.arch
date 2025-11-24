@@ -60,6 +60,11 @@ public class Booking : AggregateRoot
             throw new Exception("Only pending booking can be confirmed");
         }
 
+        if (CreatedAt.Add(MaxPendingStatusDuration) >= timeProvider.GetUtcNow().UtcDateTime)
+        {
+            throw new Exception("Can't confirm booking, pending time has expired.");
+        }
+
         Status = BookingStatus.Confirmed;
         ConfirmedAt = timeProvider.GetUtcNow().UtcDateTime;
         AddDomainEvent(new BookingConfirmedEvent(Id));
@@ -84,16 +89,16 @@ public class Booking : AggregateRoot
         AddDomainEvent(new BookingAutoCanceledEvent(Id));
     }
 
-    public void Cancel(TimeProvider timeProvider)
+    public void CancelConfirmed(TimeProvider timeProvider)
     {
-        if (Status == BookingStatus.Canceled)
+        if (Status != BookingStatus.Confirmed)
         {
             throw new Exception("Booking already canceled");
         }
 
         Status = BookingStatus.Canceled;
         CanceledAt = timeProvider.GetUtcNow().UtcDateTime;
-        AddDomainEvent(new BookingCanceledEvent(Id));
+        AddDomainEvent(new BookingCanceledConfirmedEvent(Id));
     }
     
     private Booking(){}
