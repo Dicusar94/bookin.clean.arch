@@ -38,4 +38,20 @@ public class AutoCancelBookingShould
         // assert
         action.ShouldThrow<Exception>();
     }
-}
+    
+    [Fact]
+    public void AutoCancel_with_pending_status_time_not_exceeded_should_failed()
+    {
+        // arrange
+        var timeProvider = DateTimeConstants.FakeProvider;
+        var booking = TestBookingFactory.Create(timeProvider: timeProvider);
+
+        var advanceTime = Booking.MaxPendingStatusDuration.Add(TimeSpan.FromMinutes(-1));
+        timeProvider.Advance(advanceTime);
+        
+        // act
+        var action = () => booking.AutoCancel(timeProvider);
+        
+        // assert
+        action.ShouldThrow<Exception>();
+    }}

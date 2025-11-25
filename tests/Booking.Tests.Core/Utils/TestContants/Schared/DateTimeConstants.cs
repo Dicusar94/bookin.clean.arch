@@ -17,6 +17,5 @@ public class DateTimeConstants
     public static readonly DateTimeOffset DateTimeOffsetNow = new(DateTimeNow, TimeSpan.Zero);
 
     public static FakeTimeProvider FakeProvider => CreateTimeProvider();
-    public static FakeTimeProvider TimeProvider = CreateTimeProvider();
-    public static FakeTimeProvider CreateTimeProvider() => new(DateTimeOffsetNow);
+    private static FakeTimeProvider CreateTimeProvider() => new(DateTimeOffsetNow);
 }

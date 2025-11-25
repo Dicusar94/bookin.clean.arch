@@ -89,11 +89,11 @@ public class Booking : AggregateRoot
         AddDomainEvent(new BookingAutoCanceledEvent(Id));
     }
 
-    public void CancelConfirmed(TimeProvider timeProvider)
+    public void Cancel(TimeProvider timeProvider)
     {
         if (Status != BookingStatus.Confirmed)
         {
-            throw new Exception("Booking already canceled");
+            throw new Exception("Can't cancel unconfirmed booking");
         }
 
         Status = BookingStatus.Canceled;

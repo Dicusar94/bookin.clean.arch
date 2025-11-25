@@ -8,6 +8,7 @@ using Shouldly;
 
 namespace BookingApp.Domains;
 
+[Collection(CollectionConstants.ApplicationTests)]
 public class BookingPolicyServiceTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory), IClassFixture<ApiFactory> 
 {
     private readonly IBookingPolicyService _sut = apiFactory.GetService<IBookingPolicyService>();

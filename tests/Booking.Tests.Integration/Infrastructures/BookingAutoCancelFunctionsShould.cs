@@ -13,6 +13,7 @@ using Shouldly;
 
 namespace BookingApp.Infrastructures;
 
+[Collection(CollectionConstants.ApplicationTests)]
 public class BookingAutoCancelFunctionsShould(ApiFactory apiFactory) 
     : BaseAsyncLifeTime(apiFactory), IClassFixture<ApiFactory>
 {
