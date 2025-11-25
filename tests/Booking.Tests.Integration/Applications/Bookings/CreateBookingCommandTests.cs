@@ -1,4 +1,5 @@
 using BookingApp.Features.Bookings.Commands.Create;
+using BookingApp.Shared;
 using BookingApp.Utils;
 using BookingApp.Utils.TestContants.Rooms;
 using BookingApp.Utils.TestContants.Schared;
@@ -13,6 +14,7 @@ namespace BookingApp.Applications.Bookings;
 public class CreateBookingCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory)
 {
     private readonly ISender _sender = apiFactory.GetService<ISender>();
+    private readonly IUnitOfWork unitOfWork = apiFactory.GetService<IUnitOfWork>();
 
     [Fact]
     public async Task Execute_should_succeed()
@@ -26,9 +28,10 @@ public class CreateBookingCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTim
             End: new TimeOnly(11, 00));
 
         // act
-        var booking = await _sender.Send(command, CancellationToken.None);
+        var response = await _sender.Send(command, CancellationToken.None);
         
         // assert
-        booking.ShouldNotBeNull();
+        var dbBooking = await unitOfWork.Bookings.GetBookingById(response.Id);
+        dbBooking.ShouldNotBeNull();
     }
 }
