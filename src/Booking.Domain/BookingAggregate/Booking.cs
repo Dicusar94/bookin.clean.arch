@@ -60,7 +60,7 @@ public class Booking : AggregateRoot
             throw new Exception("Only pending booking can be confirmed");
         }
 
-        if (CreatedAt.Add(MaxPendingStatusDuration) >= timeProvider.GetUtcNow().UtcDateTime)
+        if (timeProvider.GetUtcNow().UtcDateTime > CreatedAt.Add(MaxPendingStatusDuration) )
         {
             throw new Exception("Can't confirm booking, pending time has expired.");
         }

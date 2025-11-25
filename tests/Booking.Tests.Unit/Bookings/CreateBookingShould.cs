@@ -20,7 +20,7 @@ public class CreateBookingShould
             userId: UserConstants.User1Id,
             date: DateTimeConstants.DateNow,
             timeRange: TimeRangeConstants.NineAmToElevenAm,
-            timeProvider: DateTimeConstants.TimeProvider,
+            timeProvider: DateTimeConstants.FakeProvider,
             id: BookingConstants.Booking1Id);
 
         // assert
@@ -40,7 +40,7 @@ public class CreateBookingShould
         // arrange & act
         var booking = TestBookingFactory.Create(
             id: BookingConstants.Booking1Id,
-            timeProvider: DateTimeConstants.TimeProvider);
+            timeProvider: DateTimeConstants.FakeProvider);
         
         // assert
         booking.DomainEvents.Count.ShouldBe(2);
@@ -50,7 +50,7 @@ public class CreateBookingShould
 
         var pendingConfirmation = booking.DomainEvents.OfType<BookingPendingConfirmationEvent>().Single();
         pendingConfirmation.Id.ShouldBe(booking.Id);
-        pendingConfirmation.OnDate.ShouldBe(DateTimeConstants.TimeProvider.GetLocalNow());
+        pendingConfirmation.OnDate.ShouldBe(DateTimeConstants.FakeProvider.GetLocalNow());
     }
 
     [Fact]
@@ -59,7 +59,7 @@ public class CreateBookingShould
         // arrange & act
         var action = () => TestBookingFactory.Create(
             date: DateTimeConstants.DateNow.AddDays(-1),
-            timeProvider: DateTimeConstants.TimeProvider);
+            timeProvider: DateTimeConstants.FakeProvider);
         
         // assert
         action.ShouldThrow<Exception>();

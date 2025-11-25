@@ -5,6 +5,7 @@ using BookingApp.Utils.TestContants.Rooms;
 using BookingApp.Utils.TestContants.Schared;
 using BookingApp.Utils.TestContants.Users;
 using MediatR;
+using Microsoft.Extensions.Time.Testing;
 using Shouldly;
 
 namespace BookingApp.Applications.Bookings;
@@ -17,6 +18,7 @@ public class ScheduleAutoCancelBookingTests(ApiFactory apiFactory) : BaseAsyncLi
     public async Task PendingBooking_ShouldSchedule_AutoCancelTicker()
     {
         //arrange
+        var timeProvider = new FakeTimeProvider(DateTimeConstants.DateTimeOffsetNow);
         var fakeTicker = _apiFactory.GetTickerService<BookingAutoCancelTicker>();
         var sender = _apiFactory.GetService<ISender>();
 
@@ -36,7 +38,7 @@ public class ScheduleAutoCancelBookingTests(ApiFactory apiFactory) : BaseAsyncLi
         fakeTicker.AddedTickers.Count.ShouldBe(1);
         var ticker = fakeTicker.AddedTickers.First();
 
-        var expected = DateTimeConstants.TimeProvider.GetUtcNow()
+        var expected = timeProvider.GetUtcNow()
             .DateTime.Add(BookingAggregate.Booking.MaxPendingStatusDuration);
         
         ticker.ExecutionTime.ShouldBe(expected);

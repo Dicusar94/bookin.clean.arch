@@ -35,7 +35,7 @@ public static class TestSeedingExtensions
             capacity: 2);
             
         room1.AddSchedule(recurringSchedule);
-        room1.Activate(DateTimeConstants.TimeProvider);
+        room1.Activate(DateTimeConstants.FakeProvider);
         
         var room2 = TestRoomFactory.CreateRoom(
             id: RoomConstants.Room2Id,
@@ -43,7 +43,7 @@ public static class TestSeedingExtensions
             capacity: 2);
         
         room2.AddSchedule(concreteSchedule);
-        room2.Activate(DateTimeConstants.TimeProvider);
+        room2.Activate(DateTimeConstants.FakeProvider);
         
 
         await dbContext.Rooms.AddRangeAsync([room1, room2], ct);
@@ -56,7 +56,7 @@ public static class TestSeedingExtensions
             userId: UserConstants.User1Id,
             date: DateTimeConstants.DateNow,
             timeRange: TimeRangeConstants.NineAmToElevenAm,
-            timeProvider: DateTimeConstants.TimeProvider,
+            timeProvider: DateTimeConstants.FakeProvider,
             id: BookingConstants.Booking1Id);
         
         var bookingRoom2 = TestBookingFactory.Create(
@@ -64,7 +64,7 @@ public static class TestSeedingExtensions
             userId: UserConstants.User1Id,
             date: DateTimeConstants.DateNow,
             timeRange: TimeRangeConstants.NineAmToElevenAm,
-            timeProvider: DateTimeConstants.TimeProvider,
+            timeProvider: DateTimeConstants.FakeProvider,
             id: BookingConstants.Booking2Id);
 
         await dbContext.Bookings.AddRangeAsync([bookingRoom1, bookingRoom2], ct);

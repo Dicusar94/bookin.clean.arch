@@ -23,6 +23,7 @@ namespace BookingApp.Utils;
 public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
 {
     private readonly PostgreSqlContainer _postgreSqlContainer = new PostgreSqlBuilder().Build();
+    public FakeTimeProvider TimeProvider { get; private set; } = DateTimeConstants.CreateTimeProvider();
     public TestDatabaseReset TestDatabaseReset { get; private set; } = null!;
     
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -38,10 +39,15 @@ public class ApiFactory : WebApplicationFactory<IWebMarker>, IAsyncLifetime
         });
     }
 
-    private static void StubTimeprovider(IServiceCollection services)
+    private void StubTimeprovider(IServiceCollection services)
     {
         services.RemoveAll<TimeProvider>();
-        services.AddSingleton<TimeProvider>(DateTimeConstants.TimeProvider);
+        services.AddSingleton<TimeProvider>(TimeProvider);
+    }
+
+    public void ResetTimeProvider()
+    {
+        TimeProvider = DateTimeConstants.CreateTimeProvider();
     }
 
     private static void RemoveRabbitMq(IServiceCollection services)

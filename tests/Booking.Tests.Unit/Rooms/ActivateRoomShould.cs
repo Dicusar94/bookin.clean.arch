@@ -17,7 +17,7 @@ public class ActivateRoomShould
         room.AddSchedule(TestRoomFactory.CreateRecurringSchedule());
         
         // act
-        room.Activate(DateTimeConstants.TimeProvider);
+        room.Activate(DateTimeConstants.FakeProvider);
         
         // assert
         room.Status.ShouldBe(RoomStatus.Active);
@@ -29,10 +29,10 @@ public class ActivateRoomShould
         // arrange
         var room = TestRoomFactory.CreateRoom();
         room.AddSchedule(TestRoomFactory.CreateRecurringSchedule());
-        room.Activate(DateTimeConstants.TimeProvider);
+        room.Activate(DateTimeConstants.FakeProvider);
         
         // act
-        var action = () => room.Activate(DateTimeConstants.TimeProvider);
+        var action = () => room.Activate(DateTimeConstants.FakeProvider);
         
         // assert
         action.ShouldThrow<Exception>();
@@ -45,7 +45,7 @@ public class ActivateRoomShould
         var room = TestRoomFactory.CreateRoom();
         
         // act
-        var action = () => room.Activate(DateTimeConstants.TimeProvider);
+        var action = () => room.Activate(DateTimeConstants.FakeProvider);
         
         // assert
         action.ShouldThrow<Exception>();
@@ -55,7 +55,7 @@ public class ActivateRoomShould
     public void Activate_when_has_no_active_schedule_should_fail()
     {
         // arrange
-        var timeProvider = new FakeTimeProvider(DateTimeConstants.DateTimeOffsetNow);
+        var timeProvider = DateTimeConstants.FakeProvider;
         var room = TestRoomFactory.CreateRoom();
         room.AddSchedule(TestRoomFactory.CreateConcreteSchedule(date: DateTimeConstants.DateNow));
         
@@ -76,13 +76,13 @@ public class ActivateRoomShould
         room.AddSchedule(TestRoomFactory.CreateRecurringSchedule());
         
         // act
-        room.Activate(DateTimeConstants.TimeProvider);
+        room.Activate(DateTimeConstants.FakeProvider);
         
         // assert
         room.DomainEvents.OfType<RoomActivatedEvent>().Count().ShouldBe(1);
 
         var roomDeactivatedEvent = room.DomainEvents.OfType<RoomActivatedEvent>().Single();
         roomDeactivatedEvent.Id.ShouldBe(room.Id);
-        roomDeactivatedEvent.OnDateTime.ShouldBe(DateTimeConstants.TimeProvider.GetUtcNow().UtcDateTime);
+        roomDeactivatedEvent.OnDateTime.ShouldBe(DateTimeConstants.FakeProvider.GetUtcNow().UtcDateTime);
     }
 }

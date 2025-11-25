@@ -8,6 +8,7 @@ using BookingApp.Utils.TestContants.Rooms;
 using BookingApp.Utils.TestContants.Schared;
 using BookingApp.Utils.TestContants.Users;
 using MediatR;
+using Org.BouncyCastle.Asn1.X509;
 using Shouldly;
 
 namespace BookingApp.Infrastructures;
@@ -20,7 +21,6 @@ public class BookingAutoCancelFunctionsShould(ApiFactory apiFactory)
     [Fact]
     public async Task AutoCancel_ShouldCancelBooking()
     {
-        //arrange
         var sender = _apiFactory.GetService<ISender>();
         var unitOfWork = _apiFactory.GetService<IUnitOfWork>();
         var timeRange = TimeRangeConstants.NineAmToElevenAm;
@@ -35,7 +35,7 @@ public class BookingAutoCancelFunctionsShould(ApiFactory apiFactory)
         var response = await sender.Send(command);
         
         var timeTravelSpan = BookingAggregate.Booking.MaxPendingStatusDuration + TimeSpan.FromMinutes(1);
-        DateTimeConstants.TimeProvider.Advance(timeTravelSpan);
+        TimeProvider.Advance(timeTravelSpan);
         var function = _apiFactory.GetService<BookingAutoCancelFunctions>();
         
         // act

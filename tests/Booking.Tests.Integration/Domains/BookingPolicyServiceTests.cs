@@ -22,7 +22,7 @@ public class BookingPolicyServiceTests(ApiFactory apiFactory) : BaseAsyncLifeTim
             userId: UserConstants.User2Id,
             date: DateTimeConstants.DateNow,
             timeRange: TimeRangeConstants.FourAmToFivePm,
-            timeProvider: DateTimeConstants.TimeProvider);
+            timeProvider: DateTimeConstants.FakeProvider);
         
         // act
         var action = async () => await _sut.EnsureBookingCanBeCreatedAsync(booking, CancellationToken.None);
@@ -40,7 +40,7 @@ public class BookingPolicyServiceTests(ApiFactory apiFactory) : BaseAsyncLifeTim
             userId: UserConstants.User2Id,
             date: DateTimeConstants.DateNow,
             timeRange: TimeRangeConstants.FiveToSixPm,
-            timeProvider: DateTimeConstants.TimeProvider);
+            timeProvider: DateTimeConstants.FakeProvider);
         
         // act
         var action = async () => await _sut.EnsureBookingCanBeCreatedAsync(booking, CancellationToken.None);
@@ -67,7 +67,7 @@ public class BookingPolicyServiceTests(ApiFactory apiFactory) : BaseAsyncLifeTim
             userId: UserConstants.User2Id,
             date: DateTimeConstants.DateNow,
             timeRange: TimeRangeConstants.TenAmToTwelvePm,
-            timeProvider: DateTimeConstants.TimeProvider,
+            timeProvider: DateTimeConstants.FakeProvider,
             id: Guid.NewGuid());
         
         // act
@@ -86,7 +86,7 @@ public class BookingPolicyServiceTests(ApiFactory apiFactory) : BaseAsyncLifeTim
             userId: UserConstants.User1Id,
             date: DateTimeConstants.DateNow,
             timeRange: TimeRangeConstants.TenAmToTwelvePm,
-            timeProvider: DateTimeConstants.TimeProvider,
+            timeProvider: DateTimeConstants.FakeProvider,
             id: Guid.NewGuid());
         
         // act

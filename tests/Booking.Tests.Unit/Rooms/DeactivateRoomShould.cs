@@ -15,7 +15,7 @@ public class DeactivateRoomShould
         // arrange
         var room = TestRoomFactory.CreateRoom();
         room.AddSchedule(TestRoomFactory.CreateRecurringSchedule());
-        room.Activate(DateTimeConstants.TimeProvider);
+        room.Activate(DateTimeConstants.FakeProvider);
         
         // act
         room.Deactivate(TimeProvider.System);
@@ -31,7 +31,7 @@ public class DeactivateRoomShould
         var room = TestRoomFactory.CreateRoom();
         
         // act
-        var action = () => room.Deactivate(TimeProvider.System);
+        var action = () => room.Deactivate(DateTimeConstants.FakeProvider);
         
         // assert
         action.ShouldThrow<Exception>();
@@ -43,16 +43,16 @@ public class DeactivateRoomShould
         // arrange
         var room = TestRoomFactory.CreateRoom();
         room.AddSchedule(TestRoomFactory.CreateRecurringSchedule());
-        room.Activate(DateTimeConstants.TimeProvider);
+        room.Activate(DateTimeConstants.FakeProvider);
         
         // act
-        room.Deactivate(DateTimeConstants.TimeProvider);
+        room.Deactivate(DateTimeConstants.FakeProvider);
         
         // assert
         room.DomainEvents.OfType<RoomDeactivatedEvent>().Count().ShouldBe(1);
 
         var roomDeactivatedEvent = room.DomainEvents.OfType<RoomDeactivatedEvent>().Single();
         roomDeactivatedEvent.Id.ShouldBe(room.Id);
-        roomDeactivatedEvent.OnDateTime.ShouldBe(DateTimeConstants.TimeProvider.GetUtcNow().UtcDateTime);
+        roomDeactivatedEvent.OnDateTime.ShouldBe(DateTimeConstants.FakeProvider.GetUtcNow().UtcDateTime);
     }
 }

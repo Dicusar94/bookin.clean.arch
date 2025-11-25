@@ -11,7 +11,7 @@ public class AutoCancelBookingShould
     public void AutoCancel_should_succeed()
     {
         // arrange
-        var timeProvider = DateTimeConstants.TimeProvider;
+        var timeProvider = DateTimeConstants.FakeProvider;
         var booking = TestBookingFactory.Create(timeProvider: timeProvider);
 
         var timeAdvance = Booking.MaxPendingStatusDuration;
@@ -28,14 +28,14 @@ public class AutoCancelBookingShould
     public void AutoCancel_with_confirmed_status_should_failed()
     {
         // arrange
-        var timeProvider = DateTimeConstants.TimeProvider;
+        var timeProvider = DateTimeConstants.FakeProvider;
         var booking = TestBookingFactory.Create(timeProvider: timeProvider);
         booking.Confirm(timeProvider);
         
         // act
-        booking.AutoCancel(timeProvider);
+        var action = () => booking.AutoCancel(timeProvider);
         
         // assert
-        booking.Status.ShouldBe(BookingStatus.Canceled);
+        action.ShouldThrow<Exception>();
     }
 }
