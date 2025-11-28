@@ -1,6 +1,6 @@
 using BookingApp.Abstractions;
 using BookingApp.BookingAggregate.Events;
-using BookingApp.Features.Bookings.BackgroundJobs.AutoCancels;
+using BookingApp.Features.Bookings.Backgrounds;
 using BookingApp.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using TickerQ.Utilities;

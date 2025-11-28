@@ -1,3 +1,3 @@
-namespace BookingApp.Abstractions;
+namespace BookingApp.BackgroundJobs;
 
 public interface ITickerFunctionMarker{}

@@ -2,12 +2,12 @@
 set -e
 set -o pipefail
 
-PROJECT="Booking.Tests.Integration.csproj"
+PROJECT="Booking.Tests.Subcutaneous.csproj"
 REPORT_DIR="CoverageReport"
 
-echo "🧪 Running integration tests with coverage..."
+echo "🧪 Running subcutaneous tests with coverage..."
 dotnet test "$PROJECT" \
-  --settings ../coverage.integration.runsettings \
+  --settings ../coverage.subcutaneous.runsettings \
   --collect:"XPlat Code Coverage" \
   --results-directory "$REPORT_DIR" \
   -p:ExcludeByFile="**/Migrations/*" \
@@ -21,7 +21,7 @@ reportgenerator \
   -reports:"$REPORT_DIR"/*/coverage.cobertura.xml \
   -targetdir:"$REPORT_DIR"/Html \
   -reporttypes:"Html;Cobertura" \
-  "-assemblyfilters:-Booking.Domain;-Booking.Tests*;-Booking.Core;-Booking.Infrastructure" \
+  "-assemblyfilters:-Booking.Domain;-Booking.Tests*;-Booking.Core;-Booking.Application;-Booking.Web" \
   "-filefilters:-**/Migrations/*.cs;-**/Migrations/**/*.cs"
 
 # 🧮 Extract percentage from merged Cobertura XML

@@ -7,8 +7,8 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector"/>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
     <PackageReference Include="Microsoft.NET.Test.Sdk"/>
+    <PackageReference Include="Respawn" />
     <PackageReference Include="Shouldly" />
     <PackageReference Include="Testcontainers.PostgreSql" />
     <PackageReference Include="xunit"/>
@@ -20,12 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Booking.Tests.Core\Booking.Tests.Core.csproj" />
     <ProjectReference Include="..\..\src\Booking.Web\Booking.Web.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="BackgroundJobs\" />
+    <ProjectReference Include="..\Booking.Tests.Core\Booking.Tests.Core.csproj" />
   </ItemGroup>
 
 </Project>

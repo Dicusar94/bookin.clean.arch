@@ -485,3 +485,4 @@ $RECYCLE.BIN/
 tests/Booking.Tests.Unit/CoverageReport/*
 tests/Booking.Tests.Integration/CoverageReport/*
 docker-compose-external-config.override.yaml
+/tests/Booking.Tests.Subcutaneous/CoverageReport/

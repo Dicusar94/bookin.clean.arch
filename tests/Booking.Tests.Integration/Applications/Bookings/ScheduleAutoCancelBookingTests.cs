@@ -1,4 +1,4 @@
-using BookingApp.Features.Bookings.BackgroundJobs.AutoCancels;
+using BookingApp.Features.Bookings.Backgrounds;
 using BookingApp.Features.Bookings.Commands.Create;
 using BookingApp.Utils;
 using BookingApp.Utils.TestContants.Rooms;

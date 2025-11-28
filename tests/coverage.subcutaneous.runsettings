@@ -12,8 +12,9 @@
           <!-- Exclude Domain, Tests, Core -->
           <Exclude>
             <ModulePath>.*[\\/]+Booking\.Domain\.dll$</ModulePath>
-            <ModulePath>.*[\\/]+Booking\.Infrastructure\.dll$</ModulePath>
             <ModulePath>.*[\\/]+Booking\.Tests.*\.dll$</ModulePath>
+            <ModulePath>.*[\\/]+Booking\.Application.*\.dll$</ModulePath>
+            <ModulePath>.*[\\/]+Booking\.Web.*\.dll$</ModulePath>
             <ModulePath>.*[\\/]+Booking\.Core\.dll$</ModulePath>
           </Exclude>
 

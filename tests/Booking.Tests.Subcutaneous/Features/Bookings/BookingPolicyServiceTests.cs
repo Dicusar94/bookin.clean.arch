@@ -6,9 +6,9 @@ using BookingApp.Utils.TestContants.Schared;
 using BookingApp.Utils.TestContants.Users;
 using Shouldly;
 
-namespace BookingApp.Domains;
+namespace BookingApp.Features.Bookings;
 
-[Collection(CollectionConstants.ApplicationTests)]
+[Collection(CollectionConstants.SubcutaneousTests)]
 public class BookingPolicyServiceTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory), IClassFixture<ApiFactory> 
 {
     private readonly IBookingPolicyService _sut = apiFactory.GetService<IBookingPolicyService>();

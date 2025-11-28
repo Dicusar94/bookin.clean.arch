@@ -1,5 +1,5 @@
+using BookingApp.BackgroundJobs;
 using BookingApp.BookingAggregate;
-using BookingApp.Features.Bookings.BackgroundJobs.AutoCancels;
 using BookingApp.Features.Bookings.Commands.Create;
 using BookingApp.Shared;
 using BookingApp.Utils;
@@ -8,12 +8,11 @@ using BookingApp.Utils.TestContants.Rooms;
 using BookingApp.Utils.TestContants.Schared;
 using BookingApp.Utils.TestContants.Users;
 using MediatR;
-using Org.BouncyCastle.Asn1.X509;
 using Shouldly;
 
-namespace BookingApp.Infrastructures;
+namespace BookingApp.Features.Bookings;
 
-[Collection(CollectionConstants.ApplicationTests)]
+[Collection(CollectionConstants.SubcutaneousTests)]
 public class BookingAutoCancelFunctionsShould(ApiFactory apiFactory) 
     : BaseAsyncLifeTime(apiFactory), IClassFixture<ApiFactory>
 {
