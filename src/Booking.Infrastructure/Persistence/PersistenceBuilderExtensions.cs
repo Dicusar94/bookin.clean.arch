@@ -63,7 +63,14 @@ public static class PersistenceBuilderExtensions
     {
         using var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope();
         using var context = serviceScope.ServiceProvider.GetService<ApplicationDbContext>();
-        context?.Database.Migrate();
+
+        if (context is null) return app;
+
+        if (context.Database.GetPendingMigrations().Any())
+        {
+            context.Database.MigrateAsync();
+        }
+        
         return app;
     }
 }

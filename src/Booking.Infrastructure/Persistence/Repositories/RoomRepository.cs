@@ -61,4 +61,9 @@ public class RoomRepository(ApplicationDbContext context) : IRoomRepository
 
         return room;
     }
+
+    public Task<List<Room>> GetRooms(CancellationToken ct)
+    {
+        return context.Rooms.ToListAsync(ct);
+    }
 }

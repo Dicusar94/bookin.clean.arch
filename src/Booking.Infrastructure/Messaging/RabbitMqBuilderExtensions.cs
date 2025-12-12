@@ -37,7 +37,6 @@ public static class RabbitMqBuilderExtensions
         builder.Services.AddSingleton<IMessageProducer, InMemoryQueueMessageProducer>();
         
         //todo: register event listeners here
-        builder.Services.AddSingleton<IListener, TestListener>();
         builder.Services.AddSingleton<IListener, ScheduleBookingAutoCancelEventHandler>();
 
         builder.Services.AddHostedService<WorkerService>();
