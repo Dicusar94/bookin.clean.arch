@@ -20,8 +20,10 @@ public static class PersistenceBuilderExtensions
     {
         builder.Services.AddSingleton<PublishDomainEventsInterceptor>();
         
-        builder.Services.AddDbContext<ApplicationDbContext>(opt => 
-            opt.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+        builder.Services.AddDbContext<ApplicationDbContext>(opt =>
+            opt.UseNpgsql(
+                builder.Configuration.GetConnectionString("Default"),
+                npgsql => npgsql.MigrationsHistoryTable("__EFMigrationsHistory", "room-booking")));
 
         builder.AddRepositories();
         builder.AddBackgroundJobs();
