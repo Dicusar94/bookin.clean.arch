@@ -64,6 +64,6 @@ public class RoomRepository(ApplicationDbContext context) : IRoomRepository
 
     public Task<List<Room>> GetRooms(CancellationToken ct)
     {
-        return context.Rooms.ToListAsync(ct);
+        return context.Rooms.Include(x => x.Schedules).ToListAsync(ct);
     }
 }

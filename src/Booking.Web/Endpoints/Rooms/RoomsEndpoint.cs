@@ -1,4 +1,5 @@
 using Asp.Versioning;
+using BookingApp.Features.Rooms.Rooms.Commands.Activate;
 using BookingApp.Features.Rooms.Rooms.Commands.Add;
 using BookingApp.Features.Rooms.Rooms.Commands.Deactivate;
 using BookingApp.Features.Rooms.Rooms.Commons;
@@ -47,6 +48,11 @@ public class RoomsEndpoint : IEndpointsDefinition
             .Produces<RoomDto>(statusCode: 200, ApplicationJson)
             .ProducesValidationProblem()
             .WithName("DeactivateRoom");
+        
+        group.MapPut("{id:guid}/activate", ActivateRoom)
+            .Produces<RoomDto>(statusCode: 200, ApplicationJson)
+            .ProducesValidationProblem()
+            .WithName("ActivateRoom");
     }
 
     private static async Task<IResult> GetRooms([FromServices] ISender sender)
@@ -65,6 +71,13 @@ public class RoomsEndpoint : IEndpointsDefinition
     private static async Task<IResult> DeactivateRoom(Guid id, [FromServices] ISender sender)
     {
         var command = new DeactivateRoomCommand(id);
+        var room = await sender.Send(command);
+        return Results.Ok(room);
+    }
+    
+    private static async Task<IResult> ActivateRoom(Guid id, [FromServices] ISender sender)
+    {
+        var command = new ActivateRoomCommand(id);
         var room = await sender.Send(command);
         return Results.Ok(room);
     }
