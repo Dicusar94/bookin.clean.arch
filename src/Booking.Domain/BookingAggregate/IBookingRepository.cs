@@ -7,7 +7,8 @@ public interface IBookingRepository
     Task<Booking> AddBooking(Booking booking);
     Task<Booking> UpdateBooking(Booking booking);
     Task<Booking> GetBookingById(Guid id);
-
+    Task<List<Booking>> GetBookings(CancellationToken ct);
+    
     Task<IReadOnlyList<Booking>> GetOverlappingBookingsAsync(
         Guid roomId,
         DateOnly date,

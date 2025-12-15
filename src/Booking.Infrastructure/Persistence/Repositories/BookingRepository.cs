@@ -46,6 +46,11 @@ public class BookingRepository(ApplicationDbContext context) : IBookingRepositor
         return booking;
     }
 
+    public Task<List<BookingAggregate.Booking>> GetBookings(CancellationToken ct)
+    {
+        return context.Bookings.ToListAsync(ct);
+    }
+
     public async Task<IReadOnlyList<BookingAggregate.Booking>> GetOverlappingBookingsAsync(
         Guid roomId, 
         DateOnly date, 
