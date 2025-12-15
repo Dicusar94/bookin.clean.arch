@@ -68,7 +68,7 @@ public static class PersistenceBuilderExtensions
 
         if (context.Database.GetPendingMigrations().Any())
         {
-            context.Database.MigrateAsync();
+            context.Database.Migrate();
         }
         
         return app;
