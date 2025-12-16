@@ -9,7 +9,7 @@ using Shouldly;
 namespace BookingApp.Features.Bookings;
 
 [Collection(CollectionConstants.SubcutaneousTests)]
-public class BookingPolicyServiceTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory), IClassFixture<ApiFactory> 
+public class BookingPolicyServiceTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory)
 {
     private readonly IBookingPolicyService _sut = apiFactory.GetService<IBookingPolicyService>();
     private readonly IUnitOfWork _unitOfWork = apiFactory.GetService<IUnitOfWork>();

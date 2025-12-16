@@ -13,8 +13,7 @@ using Shouldly;
 namespace BookingApp.Features.Bookings;
 
 [Collection(CollectionConstants.SubcutaneousTests)]
-public class BookingAutoCancelFunctionsShould(ApiFactory apiFactory) 
-    : BaseAsyncLifeTime(apiFactory), IClassFixture<ApiFactory>
+public class BookingAutoCancelFunctionsShould(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory)
 {
     private readonly ApiFactory _apiFactory = apiFactory;
 
