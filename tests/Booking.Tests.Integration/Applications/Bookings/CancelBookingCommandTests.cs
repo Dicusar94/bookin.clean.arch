@@ -10,14 +10,16 @@ using Shouldly;
 namespace BookingApp.Applications.Bookings;
 
 [Collection(CollectionConstants.ApplicationTests)]
-public class CancelBookingCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory), IClassFixture<ApiFactory>
+public class CancelBookingCommandTests(ApiFactory apiFactory) : BaseAsyncLifeTime(apiFactory)
 {
+    private readonly ApiFactory _apiFactory = apiFactory;
+
     [Fact]
     public async Task Execute_should_succeed()
     {
         // arrange
-        var sender = apiFactory.GetService<ISender>();
-        var unitOfWork = apiFactory.GetService<IUnitOfWork>();
+        var sender = _apiFactory.GetService<ISender>();
+        var unitOfWork = _apiFactory.GetService<IUnitOfWork>();
         
         var bookingId = BookingConstants.Booking1Id;
         var confirmCommand = new ConfirmBookingCommand(bookingId);
