@@ -1,7 +1,9 @@
 using BookingApp;
+using BookingApp.Features.Bookings.Backgrounds;
 using BookingApp.Infrastructure.Endpoints;
 using BookingApp.Persistence;
 using TickerQ.DependencyInjection;
+using TickerQ.Utilities.Interfaces.Managers;
 
 var builder = WebApplication.CreateBuilder(args);
 {
@@ -10,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 {
+    
     app.UseHttpsRedirection();
     
     if (app.Environment.IsDevelopment())

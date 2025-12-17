@@ -2,6 +2,7 @@ namespace BookingApp.Features.Rooms.RoomSchedules.Commons;
 
 public class RoomScheduleDto
 {
+    public Guid Id { get; set; }
     public Guid RoomId { get; set; }
     public DayOfWeek DayOfWeek { get; set; }
     public bool IsRecurring { get; set; }

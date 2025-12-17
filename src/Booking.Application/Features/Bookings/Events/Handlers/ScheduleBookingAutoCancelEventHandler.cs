@@ -5,6 +5,7 @@ using BookingApp.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using TickerQ.Utilities;
 using TickerQ.Utilities.Interfaces.Managers;
+using TickerQ.Utilities.Models.Ticker;
 
 namespace BookingApp.Features.Bookings.Events.Handlers;
 
@@ -13,10 +14,10 @@ public class ScheduleBookingAutoCancelEventHandler(IServiceScopeFactory serviceS
 {
     public override async Task ProcessMessage(Message message, string routingKey)
     {
-        var timeTickerManager = serviceProvider.GetRequiredService<ITimeTickerManager<BookingAutoCancelTicker>>();
+        var timeTickerManager = serviceProvider.GetRequiredService<ITimeTickerManager<TimeTicker>>();
 
         var evt = message.GetBody<BookingPendingConfirmationEvent>();
-        var executionTime = evt.OnDate.DateTime.Add(BookingAggregate.Booking.MaxPendingStatusDuration);
+        var executionTime = evt.OnDate.Add(BookingAggregate.Booking.MaxPendingStatusDuration).UtcDateTime;
         
         var ticker = new BookingAutoCancelTicker
         {

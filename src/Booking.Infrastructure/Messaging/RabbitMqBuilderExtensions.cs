@@ -34,7 +34,7 @@ public static class RabbitMqBuilderExtensions
         builder.Services.AddSingleton(sp => sp.GetRequiredService<ModelFactory>().CreateChannel());
 
         builder.Services.AddSingleton<RabbitMqReceiver>();
-        builder.Services.AddSingleton<IMessageProducer, InMemoryQueueMessageProducer>();
+        builder.Services.AddSingleton<IMessageProducer, MessageProducer>();
         
         //todo: register event listeners here
         builder.Services.AddSingleton<IListener, ScheduleBookingAutoCancelEventHandler>();

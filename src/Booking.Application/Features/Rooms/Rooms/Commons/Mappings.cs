@@ -22,6 +22,7 @@ public static class Mappings
     {
         return new RoomScheduleDto
         {
+            Id = entity.Id, 
             RoomId = entity.RoomId,
             DayOfWeek = entity.DayOfWeek,
             IsRecurring = entity.IsRecurring,

@@ -10,7 +10,6 @@ public class InMemoryQueueMessageProducer : IMessageProducer
     
     public InMemoryQueueMessageProducer(IServiceProvider serviceProvider)
     {
-        
         Task.Run(async () =>
         {
             await foreach (var (message, routingKey) in _queue.Reader.ReadAllAsync())

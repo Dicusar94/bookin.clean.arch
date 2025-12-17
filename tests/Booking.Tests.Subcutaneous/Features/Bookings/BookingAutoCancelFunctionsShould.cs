@@ -1,5 +1,5 @@
-using BookingApp.BackgroundJobs;
 using BookingApp.BookingAggregate;
+using BookingApp.Features.BackgroundJobs;
 using BookingApp.Features.Bookings.Commands.Create;
 using BookingApp.Shared;
 using BookingApp.Utils;
