@@ -1,5 +1,5 @@
 using BookingApp.Abstractions;
-using BookingApp.Features.BackgroundJobs;
+using BookingApp.BackgroundJobs;
 using BookingApp.Messaging;
 using BookingApp.Messaging.Subscriber;
 using BookingApp.Persistence;

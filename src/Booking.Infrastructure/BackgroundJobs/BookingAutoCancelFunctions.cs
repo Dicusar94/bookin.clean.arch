@@ -3,7 +3,7 @@ using BookingApp.Shared;
 using TickerQ.Utilities.Base;
 using TickerQ.Utilities.Models;
 
-namespace BookingApp.Features.BackgroundJobs;
+namespace BookingApp.BackgroundJobs;
 
 public class BookingAutoCancelFunctions(IUnitOfWork unitOfWork, TimeProvider timeProvider) : ITickerFunctionMarker
 {
