@@ -1,6 +1,8 @@
 using Asp.Versioning;
 using BookingApp.FeatureToggles.Services;
+using BookingApp.Infrastructure.Middlewares;
 using BookingApp.Infrastructure.SwaggerConfigs;
+using Microsoft.FeatureManagement;
 
 namespace BookingApp;
 
@@ -20,7 +22,7 @@ public static class DependencyInjection
 
     public static IApplicationBuilder UseMiddlewares(this IApplicationBuilder applicationBuilder)
     {
-        // applicationBuilder.UseMiddlewareForFeature<LoggingMiddleware>("logging-middleware");
+        applicationBuilder.UseMiddlewareForFeature<LoggingMiddleware>("logging-middleware");
         return applicationBuilder;
     }
 
