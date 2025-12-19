@@ -22,6 +22,7 @@ public static class DependencyInjection
 
     public static IApplicationBuilder UseMiddlewares(this IApplicationBuilder applicationBuilder)
     {
+        applicationBuilder.UseMiddleware<ActivityTracingMiddleware>();
         applicationBuilder.UseMiddlewareForFeature<LoggingMiddleware>("logging-middleware");
         return applicationBuilder;
     }

@@ -9,7 +9,7 @@ public class RoomRepository(ApplicationDbContext context) : IRoomRepository
 {
     public async Task<Room> AddRoom(Room room, CancellationToken ct)
     {
-        var dbActivity = RunTimeDiagnosticConfig.Source.StartActivity()
+        using var dbActivity = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetRoomId(room.Id)
             .SetRoomName(room.Name)
             .SetRoomStatus(room.Status.ToString());
@@ -27,7 +27,7 @@ public class RoomRepository(ApplicationDbContext context) : IRoomRepository
 
     public Task<Room> UpdateRoom(Room room, CancellationToken _)
     {
-        var dbActivity = RunTimeDiagnosticConfig.Source.StartActivity()
+        using var dbActivity = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetRoomId(room.Id)
             .SetRoomName(room.Name)
             .SetRoomStatus(room.Status.ToString());
@@ -45,7 +45,7 @@ public class RoomRepository(ApplicationDbContext context) : IRoomRepository
 
     public async Task<Room> GetRoomById(Guid id, CancellationToken ct)
     {
-        var dbActivity = RunTimeDiagnosticConfig.Source.StartActivity()
+        using var dbActivity = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetRoomId(id);
 
         var room = await context.Rooms

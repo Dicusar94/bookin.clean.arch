@@ -1,4 +1,4 @@
-namespace Booking.Infrastructure.Telemetry;
+namespace BookingApp.Telemetry;
 
 public class OpenTelemetrySettings
 {

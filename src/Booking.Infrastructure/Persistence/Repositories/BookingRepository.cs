@@ -11,7 +11,7 @@ public class BookingRepository(ApplicationDbContext context) : IBookingRepositor
 {
     public async Task<BookingAggregate.Booking> AddBooking(BookingAggregate.Booking booking)
     {
-        _ = RunTimeDiagnosticConfig.Source.StartActivity()
+         _ = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetBooking(booking);
         
         await context.Bookings.AddAsync(booking);
@@ -31,7 +31,7 @@ public class BookingRepository(ApplicationDbContext context) : IBookingRepositor
 
     public async Task<BookingAggregate.Booking> GetBookingById(Guid id)
     {
-        var dbActivity = RunTimeDiagnosticConfig.Source.StartActivity()
+        using var dbActivity = RunTimeDiagnosticConfig.Source.StartActivity()
             .SetBookingId(id);
         
         var booking = await context.Bookings.FirstOrDefaultAsync(x => x.Id == id);

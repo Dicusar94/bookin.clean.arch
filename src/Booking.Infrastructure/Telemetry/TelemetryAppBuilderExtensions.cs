@@ -1,4 +1,3 @@
-using BookingApp.Telemetry;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,7 +9,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace Booking.Infrastructure.Telemetry;
+namespace BookingApp.Telemetry;
 
 public static class TelemetryAppBuilderExtensions
 {

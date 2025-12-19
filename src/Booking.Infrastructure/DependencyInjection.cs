@@ -1,4 +1,3 @@
-using Booking.Infrastructure.Telemetry;
 using BookingApp.Abstractions;
 using BookingApp.BookingAggregate.Services;
 using BookingApp.DomainServices.Bookings;
@@ -6,6 +5,7 @@ using BookingApp.ExternalConfigs;
 using BookingApp.FeatureToggles;
 using BookingApp.Messaging;
 using BookingApp.Persistence;
+using BookingApp.Telemetry;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
