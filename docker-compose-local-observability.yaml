@@ -1,6 +1,6 @@
 version: '3.4'
 services:
-  
+
   aspire-dashboard:
     container_name: dashboard
     image: mcr.microsoft.com/dotnet/nightly/aspire-dashboard:8.0.0
@@ -8,15 +8,48 @@ services:
       - DOTNET_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS=true
     ports:
       - "18888:18888"
+      - "18889:18889"    # OTLP gRPC ingest (apps/collector -> dashboard)
+      - "18890:18890"    # OTLP HTTP ingest (optional)
 
   otel-collector:
     container_name: otel-collector
     image: otel/opentelemetry-collector-contrib:latest
     depends_on:
       - aspire-dashboard
+      - tempo
     volumes:
       - ./configurations/otel-collector-config-aspire.yaml:/etc/otelcol-contrib/config.yaml
       - ./otel-data:/otel-data
     ports:
       - "4317:4317"
       - "4318:4318"
+
+  tempo:
+    container_name: tempo
+    image: grafana/tempo:latest
+    user: "0:0"
+    command: ["-config.file=/etc/tempo.yaml"]
+    volumes:
+      - ./configurations/tempo.yaml:/etc/tempo.yaml
+      - ./tempo-data:/var/tempo
+    ports:
+      - "3200:3200"   # Tempo HTTP (Grafana connects here)
+      - "4319:4317"   # Tempo OTLP gRPC (NOT required if using collector->tempo, but handy)
+      - "4320:4318"   # Tempo OTLP HTTP (optional)
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:latest
+    depends_on:
+      - tempo
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_USERS_DEFAULT_THEME=light
+    ports:
+      - "3000:3000"
+    volumes:
+      # optional auto-provision datasource:
+      - ./configurations/grafana-datasources:/etc/grafana/provisioning/datasources
+volumes:
+  tempo-data:

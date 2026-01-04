@@ -1,0 +1,28 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Docker Compose: Local Stack",
+      "type": "shell",
+      "command": "docker",
+      "args": [
+        "compose",
+        "-f", "docker-compose-dependencies.yaml",
+        "-f", "docker-compose-dependencies.override.yaml",
+        "-f", "docker-compose-external-config.yaml",
+        "-f", "docker-compose-external-config.override.yaml",
+        "-f", "docker-compose-local-observability.yaml",
+        "up",
+        "--build"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

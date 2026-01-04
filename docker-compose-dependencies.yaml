@@ -7,7 +7,7 @@ services:
       - "15672:15672" # Management plugin port
   postgresql:
     container_name: booking-postgresql
-    image: postgres:latest
+    image: postgres:17
     environment:
       POSTGRES_DB: booking 
       POSTGRES_USER: myuser

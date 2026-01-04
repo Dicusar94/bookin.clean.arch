@@ -10,8 +10,15 @@ processors:
   batch: {}
 
 exporters:
+  # Aspire dashboard (keep)
   otlp/aspire:
     endpoint: aspire-dashboard:18889
+    tls:
+      insecure: true
+
+  # Tempo (new) - OTLP gRPC
+  otlp/tempo:
+    endpoint: tempo:4317
     tls:
       insecure: true
 
@@ -20,11 +27,14 @@ service:
     traces:
       receivers: [otlp]
       processors: [batch]
-      exporters: [otlp/aspire]
+      exporters: [otlp/aspire, otlp/tempo]
+
+    # Keep metrics/logs going to Aspire as you already do
     metrics:
       receivers: [otlp]
       processors: [batch]
       exporters: [otlp/aspire]
+
     logs:
       receivers: [otlp]
       processors: [batch]

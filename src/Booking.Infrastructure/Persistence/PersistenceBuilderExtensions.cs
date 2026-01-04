@@ -68,7 +68,9 @@ public static class PersistenceBuilderExtensions
 
         if (context is null) return app;
 
-        if (context.Database.GetPendingMigrations().Any())
+        var migrations = context.Database.GetPendingMigrations();
+        
+        if (migrations.Any())
         {
             context.Database.Migrate();
         }
